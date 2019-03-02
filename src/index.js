@@ -1,12 +1,49 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
+// import App from './App';
+// import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<App />, document.getElementById('root'));
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import PropTypes from 'prop-types';
+const node = document.getElementById("root");
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+class MainNavigation extends Component {
+  render() {
+    return React.createElement(
+      'nav',
+      {
+        className: 'main-nav'
+      },
+      React.createElement(
+        'a',
+        {
+          className: 'main-nav__link',
+          href: '#',
+          title: 'some-link'
+        },
+        this.props.linkName,
+        React.createElement(
+          'img',
+          {
+            className: 'main-nav__icon',
+            src: 'images/svg/icon-add.svg',
+            alt: 'Иконка добавить доход!'
+          }
+        )
+      )
+    )
+  }
+}
+
+MainNavigation.propTypes = {
+  linkName: PropTypes.string.isRequired
+};
+
+const App = React.createElement(MainNavigation, {
+  linkName: 'Добавить доход'
+});
+
+render(App, node);
