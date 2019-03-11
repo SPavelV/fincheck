@@ -1,7 +1,20 @@
 import React from 'react';
 import {render} from 'react-dom';
 import App from './App';
+import Route from './components/router/Route';
+import Router from './components/router/Router';
 
-const node = document.getElementById("root");
+const appContainer = document.getElementById("app");
+const initialState = {
+  location: window.location.pathname,
+};
 
-render(<App/>, node);
+const renderApp = (state) =>
+  render (
+    <Router {...state}>
+      <Route path="/" component={App}/>
+    </Router>,
+    appContainer
+);
+
+renderApp(initialState);
