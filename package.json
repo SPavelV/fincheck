@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "enroute": "^1.0.1",
+    "history": "^4.7.2",
     "invariant": "^2.2.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
