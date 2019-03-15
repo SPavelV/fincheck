@@ -6,7 +6,8 @@ import { history } from './history/history'
 import App from './App';
 import Home from './pages/Home';
 import Income from './pages/Income';
-import Costs from './pages/Costs'
+import Costs from './pages/Costs';
+import NotFound from './pages/404';
 
 const appContainer = document.getElementById("app");
 
@@ -17,6 +18,7 @@ export const renderApp = (state, callback = () => {}) =>
         <Route path="/" component={Home}/>
         <Route path="/income" component={Income}/>
         <Route path="/costs" component={Costs}/>
+        <Route path="*" component={NotFound} />
       </Route>
     </Router>,
     appContainer,
