@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import RouterLink from '../router/Link';
 
 const MainNavLink = ({href, text, title, iconSrc, iconTitle}) =>
-  <a className="main-nav__link" href={href} title={title}>
-    {text}
-    <img className="main-nav__icon" src={iconSrc} alt={iconTitle}/>
-  </a>;
+  <RouterLink to={href}>
+    <a className="main-nav__link" href={href} title={title}>
+      {text}
+      <img className="main-nav__icon" src={iconSrc} alt={iconTitle}/>
+    </a>
+  </RouterLink>;
 
 MainNavLink.propTypes = {
   href: PropTypes.string,

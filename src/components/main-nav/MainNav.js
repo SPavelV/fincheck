@@ -5,7 +5,7 @@ import MainNavLink from './MainNavLink'
 const dataMenu = [
   {
     id: 'nav1',
-    href: '#',
+    href: '/income',
     text: 'Доходы',
     title: 'Доходы',
     iconSrc: null,
@@ -13,7 +13,7 @@ const dataMenu = [
   },
   {
     id: 'nav2',
-    href: '#',
+    href: '/costs',
     text: 'Расходы',
     title: 'Расходы',
     iconSrc: null,
