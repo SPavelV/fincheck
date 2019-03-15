@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import MainNav from '../components/main-nav/MainNav'
+import MainNav from './components/main-nav/MainNav'
 
 class App extends Component {
   constructor(props) {
@@ -39,8 +39,8 @@ class App extends Component {
             {/* <Loader/> */}
           </div>
         ) : (
-          0
-          // this.props.children 
+          
+          this.props.children 
         )}
       </div>
     );

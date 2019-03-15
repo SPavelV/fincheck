@@ -1,10 +1,11 @@
 import React from 'react';
 import {render} from 'react-dom';
-import App from './pages/App';
-import Home from './pages/Home';
 import Route from './components/router/Route';
 import Router from './components/router/Router';
 import { history } from './history/history'
+import App from './App';
+import Home from './pages/Home';
+import Income from './pages/Income';
 
 const appContainer = document.getElementById("app");
 
@@ -12,7 +13,8 @@ export const renderApp = (state, callback = () => {}) =>
   render (
     <Router {...state}>
       <Route path="" component={App}>
-        <Route paht="/" component={Home}/>
+        <Route path="/" component={Home}/>
+        <Route path="/income" component={Income}/>
       </Route>
     </Router>,
     appContainer,
