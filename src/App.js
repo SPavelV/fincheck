@@ -1,10 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import MainNav from './components/main-nav/MainNav'
 import RouterLink from './components/router/Link';
-import ReactSVG from 'react-svg';
 
+import ReactSVG from 'react-svg';
 import logo from './assets/images/icons/logo.svg';
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+`;
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +46,7 @@ class App extends Component {
     }
     return (
       <div className="app">
-        <header className="app__header">
+        <Header className="app__header">
           <RouterLink to="/">
             <a href="/" className="app__logo">
               <ReactSVG 
@@ -50,15 +59,15 @@ class App extends Component {
             </a>
           </RouterLink>
           <MainNav/>
-          {this.state.loading ? (
+        
+        </Header>
+        {this.state.loading ? (
             <div className="loading">
               {/* <Loader/> */}
             </div>
           ) : (
-            
             this.props.children 
           )}
-        </header>
       </div>
     );
   }

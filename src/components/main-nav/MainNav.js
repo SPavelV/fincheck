@@ -2,13 +2,19 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import MainNavLink from './MainNavLink'
 
+import bag from '../../assets/images/icons/bag.svg';
+import chart from '../../assets/images/icons/chart.svg';
+import minus from '../../assets/images/icons/minus.svg';
+import params from '../../assets/images/icons/params.svg';
+import plus from '../../assets/images/icons/plus.svg';
+
 const dataMenu = [
   {
     id: 'nav1',
     href: '/income',
     text: 'Доходы',
     title: 'Доходы',
-    iconSrc: null,
+    iconSrc: plus,
     iconTitle: 'Иконка доходов'
   },
   {
@@ -16,15 +22,15 @@ const dataMenu = [
     href: '/costs',
     text: 'Расходы',
     title: 'Расходы',
-    iconSrc: null,
+    iconSrc: minus,
     iconTitle: 'Иконка расходов'
   },
-  {
+  { 
     id: 'nav3',
-    href: '#',
+    href: '#', 
     text: 'Инвестиции',
     title: 'Инвестиции',
-    iconSrc: null,
+    iconSrc: bag,
     iconTitle: 'Иконка инвестиций'
   },
   {
@@ -32,8 +38,16 @@ const dataMenu = [
     href: '#',
     text: 'Статистика',
     title: 'Статистика',
-    iconSrc: null,
+    iconSrc: chart,
     iconTitle: 'Иконка статистика'
+  },
+  {
+    id: 'nav5',
+    href: '#',
+    text: 'Настройка',
+    title: 'Настройка',
+    iconSrc: params,
+    iconTitle: 'Иконка настройка'
   }
 ];
 

@@ -1,13 +1,27 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import RouterLink from '../router/Link';
+import ReactSVG from 'react-svg';
+
+const NavLink = styled.a`
+  font-size: 0
+`
 
 const MainNavLink = ({href, text, title, iconSrc, iconTitle}) =>
   <RouterLink to={href}>
-    <a className="main-nav__link" href={href} title={title}>
+    <NavLink className="main-nav__link" href={href} title={title}>
       {text}
-      <img className="main-nav__icon" src={iconSrc} alt={iconTitle}/>
-    </a>
+      {/* <img className="main-nav__icon" src={iconSrc} alt={iconTitle}/> */}
+
+      <ReactSVG 
+        evalScripts="always"
+        src = {iconSrc}
+        svgClassName="main-nav__icon"
+        svgStyle={{ width: 15 }}
+        wrapper="span"
+        />
+    </NavLink>
   </RouterLink>;
 
 MainNavLink.propTypes = {

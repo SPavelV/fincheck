@@ -9,6 +9,8 @@ import Income from './pages/Income';
 import Costs from './pages/Costs';
 import NotFound from './pages/404';
 
+import 'normalize.css';
+
 const appContainer = document.getElementById("app");
 
 export const renderApp = (state, callback = () => {}) =>
