@@ -4,6 +4,8 @@ import MainNav from './components/main-nav/MainNav'
 import RouterLink from './components/router/Link';
 import ReactSVG from 'react-svg';
 
+import logo from './assets/images/icons/logo.svg';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,7 @@ class App extends Component {
             <a href="/" className="app__logo">
               <ReactSVG 
               evalScripts="always"
-              src = "./assets/images/icons/logo.svg" 
+              src = {logo}
               svgClassName="app__logo-icon"
               svgStyle={{ width: 100 }}
               wrapper="span"
