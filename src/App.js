@@ -1,19 +1,43 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import ReactSVG from 'react-svg';
 import styled from 'styled-components';
-import MainNav from './components/main-nav/MainNav'
+import './assets/fonts/Eczar/stylesheet.css';
+import './assets/fonts/Roboto/stylesheet.css';
+import logo from './assets/images/icons/logo.svg';
+import logoSmall from './assets/images/icons/purse.svg';
+import MainNav from './components/main-nav/MainNav';
 import RouterLink from './components/router/Link';
 
-import ReactSVG from 'react-svg';
-import logo from './assets/images/icons/logo.svg';
 
 const Header = styled.header`
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   max-width: 1360px;
   width: 100%;
   margin: 0 auto;
+
 `;
+
+const AppContainer = styled.div`
+  * {
+    box-sizing: border-box;
+  }
+`
+
+const HeaderLogo = styled.a`
+  display: flex;
+  background: url(${logoSmall}) no-repeat center;
+  width: 19px;
+  height: 19px;
+
+  @media(min-width: 768px) {
+    background: url(${logo}) no-repeat center;
+    width: 100px;
+  }
+  
+`
 
 class App extends Component {
   constructor(props) {
@@ -45,18 +69,10 @@ class App extends Component {
       );
     }
     return (
-      <div className="app">
+      <AppContainer className="app">
         <Header className="app__header">
           <RouterLink to="/">
-            <a href="/" className="app__logo">
-              <ReactSVG 
-              evalScripts="always"
-              src = {logo}
-              svgClassName="app__logo-icon"
-              svgStyle={{ width: 100 }}
-              wrapper="span"
-              />
-            </a>
+            <HeaderLogo href="/" className="app__logo"/>
           </RouterLink>
           <MainNav/>
         
@@ -68,7 +84,7 @@ class App extends Component {
           ) : (
             this.props.children 
           )}
-      </div>
+      </AppContainer>
     );
   }
 }

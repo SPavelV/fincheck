@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import MainNavLink from './MainNavLink'
 
 import bag from '../../assets/images/icons/bag.svg';
@@ -51,10 +53,16 @@ const dataMenu = [
   }
 ];
 
+const Nav = styled.nav`
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+`;
+
 
 const MainNav = () =>
-  <nav className="main-nav">
+  <Nav className="main-nav">
     {dataMenu.map(menuItem => <MainNavLink key = {menuItem.id} {...menuItem}/>)}
-  </nav>;
+  </Nav>;
 
 export default MainNav;

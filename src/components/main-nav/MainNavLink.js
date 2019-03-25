@@ -5,22 +5,71 @@ import RouterLink from '../router/Link';
 import ReactSVG from 'react-svg';
 
 const NavLink = styled.a`
-  font-size: 0
-`
+  display: flex;
+  align-items: center;
+  font-size: 0;
+  font-family: 'Roboto';
+  font-weight: normal;
+  text-decoration: none;
+  color: #000;
+  
+
+  &:hover {
+    color: #007D51;
+    
+    svg {
+      fill: #007D51;
+    }
+
+  }
+
+  &:active {
+    color: #005D57;
+
+    svg {
+      fill: #005D57;
+    }
+  }
+
+  @media(min-width: 768px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  svg {
+      margin-right: 10px;
+      fill: #7B7B7B;
+    }
+
+  & + & {
+    margin-left: 0;
+
+    @media(min-width: 768px) {
+      margin-left: 20px;
+    }
+  }
+
+  span {
+    display: flex;
+    
+  }
+
+`;
+
+
 
 const MainNavLink = ({href, text, title, iconSrc, iconTitle}) =>
   <RouterLink to={href}>
     <NavLink className="main-nav__link" href={href} title={title}>
-      {text}
-      {/* <img className="main-nav__icon" src={iconSrc} alt={iconTitle}/> */}
-
-      <ReactSVG 
+        <ReactSVG 
         evalScripts="always"
         src = {iconSrc}
         svgClassName="main-nav__icon"
         svgStyle={{ width: 15 }}
         wrapper="span"
         />
+      {text}
+
     </NavLink>
   </RouterLink>;
 
