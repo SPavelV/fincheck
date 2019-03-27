@@ -17,7 +17,6 @@ const Header = styled.header`
   max-width: 1360px;
   width: 100%;
   margin: 0 auto;
-
 `;
 
 const AppContainer = styled.div`

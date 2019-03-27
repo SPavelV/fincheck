@@ -10,8 +10,10 @@
     "normalize.css": "^8.0.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
     "react-scripts": "2.1.5",
     "react-svg": "^8.0.0",
+    "react-transition-group": "^2.7.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.1.3"

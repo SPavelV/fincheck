@@ -12,7 +12,6 @@ const NavLink = styled.a`
   font-weight: normal;
   text-decoration: none;
   color: #000;
-  
 
   &:hover {
     color: #007D51;
@@ -20,7 +19,6 @@ const NavLink = styled.a`
     svg {
       fill: #007D51;
     }
-
   }
 
   &:active {
@@ -50,43 +48,60 @@ const NavLink = styled.a`
   }
 
   span {
-    display: flex;
-    
+    display: flex; 
   }
-
 `;
 
+export default class MainNavLink extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false
+    }
+  }
 
+  static propTypes = {
+    href: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    iconSrc: PropTypes.string,
+    iconTitle: PropTypes.string.isRequired
+  }
 
-const MainNavLink = ({href, text, title, iconSrc, iconTitle}) =>
-  <RouterLink to={href}>
-    <NavLink className="main-nav__link" href={href} title={title}>
-        <ReactSVG 
-        evalScripts="always"
-        src = {iconSrc}
-        svgClassName="main-nav__icon"
-        svgStyle={{ width: 15 }}
-        wrapper="span"
-        />
-      {text}
+  static defaultProps = {
+    href: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    iconSrc: PropTypes.string,
+    iconTitle: PropTypes.string.isRequired
+  }
 
-    </NavLink>
-  </RouterLink>;
+  handleClick = evt => {
+    evt.preventDefault();
+    const isActive = this.state.isActive === true ? true : !this.state.isActive;
+    console.log('isActive: ', isActive);
+    this.setState = {
+      isActive: isActive
+    }
+  };
 
-MainNavLink.propTypes = {
-  href: PropTypes.string,
-  text: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  iconSrc: PropTypes.string,
-  iconTitle: PropTypes.string.isRequired
-};
-
-MainNavLink.defaultProps = {
-  href: '#',
-  text: 'Пункт меню',
-  title: 'Пункт меню',
-  iconSrc: '',
-  iconTitle: 'Иконка к пункут меню'
-};
-
-export default MainNavLink;
+  render() {
+    const {href, title, iconSrc,text} = this.props;
+    const colorLink = this.state.isActive ? '#007D51' : '#000000';
+    return (
+      <RouterLink to={href}>
+        <NavLink className="main-nav__link" style={{color: colorLink}} href={href} title={title} onClick={this.handleClick}>
+            <ReactSVG 
+            evalScripts="always"
+            src = {iconSrc}
+            svgClassName="main-nav__icon"
+            svgStyle={{ width: 15 }}
+            wrapper="span"
+            />
+          {text}
+    
+        </NavLink>
+      </RouterLink>
+    )
+  }
+} 
