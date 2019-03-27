@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import RouterLink from '../router/Link';
 import ReactSVG from 'react-svg';
 
 const NavLink = styled.a`
@@ -11,7 +10,7 @@ const NavLink = styled.a`
   font-family: 'Roboto';
   font-weight: normal;
   text-decoration: none;
-  color: #000;
+  color: ${props => props.isActive ? '#007D51' : '#000000'};
 
   &:hover {
     color: #007D51;
@@ -36,7 +35,7 @@ const NavLink = styled.a`
 
   svg {
       margin-right: 10px;
-      fill: #7B7B7B;
+      fill: ${props => props.isActive ? '#007D51' : '#7B7B7B'};
     }
 
   & + & {
@@ -78,30 +77,27 @@ export default class MainNavLink extends Component{
 
   handleClick = evt => {
     evt.preventDefault();
-    const isActive = this.state.isActive === true ? true : !this.state.isActive;
-    console.log('isActive: ', isActive);
-    this.setState = {
-      isActive: isActive
-    }
+    this.setState(() => ({
+        isActive: !this.state.isActive
+      }
+    )) 
   };
 
   render() {
     const {href, title, iconSrc,text} = this.props;
-    const colorLink = this.state.isActive ? '#007D51' : '#000000';
+    // const colorLink = this.state.isActive ? {color: '#007D51'} : {color: '#000000'};
     return (
-      <RouterLink to={href}>
-        <NavLink className="main-nav__link" style={{color: colorLink}} href={href} title={title} onClick={this.handleClick}>
-            <ReactSVG 
-            evalScripts="always"
-            src = {iconSrc}
-            svgClassName="main-nav__icon"
-            svgStyle={{ width: 15 }}
-            wrapper="span"
-            />
-          {text}
-    
-        </NavLink>
-      </RouterLink>
+      <NavLink className="main-nav__link" href={href} title={title} onClick={this.handleClick} isActive={this.state.isActive}>
+          <ReactSVG 
+          evalScripts="always"
+          src = {iconSrc}
+          svgClassName="main-nav__icon"
+          svgStyle={{ width: 15 }}
+          wrapper="span"
+          />
+        {text}
+  
+      </NavLink>
     )
   }
 } 

@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ReactSVG from 'react-svg';
 import styled from 'styled-components';
 import './assets/fonts/Eczar/stylesheet.css';
 import './assets/fonts/Roboto/stylesheet.css';
 import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
-import RouterLink from './components/router/Link';
+import Counter from './components/Counter';
 
 
 const Header = styled.header`
@@ -70,19 +69,11 @@ class App extends Component {
     return (
       <AppContainer className="app">
         <Header className="app__header">
-          <RouterLink to="/">
             <HeaderLogo href="/" className="app__logo"/>
-          </RouterLink>
           <MainNav/>
         
         </Header>
-        {this.state.loading ? (
-            <div className="loading">
-              {/* <Loader/> */}
-            </div>
-          ) : (
-            this.props.children 
-          )}
+        <Counter/>
       </AppContainer>
     );
   }
