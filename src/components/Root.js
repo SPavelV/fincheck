@@ -5,10 +5,10 @@ import store from '../store'
 import {Provider} from  'react-redux'
 
 
-function Root(props) {
+function Root() {
   return (
     <Provider store = {store}>
-      <App {...props}/>
+      <App/>
     </Provider>
   )
 }

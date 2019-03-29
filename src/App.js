@@ -70,7 +70,7 @@ class App extends Component {
       <AppContainer className="app">
         <Header className="app__header">
             <HeaderLogo href="/" className="app__logo"/>
-          <MainNav/>
+          <MainNav />
         
         </Header>
         <Counter/>
