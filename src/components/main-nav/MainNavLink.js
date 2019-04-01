@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
+import {toggleActiveMainNavLink} from '../../actions'
 
 const NavLink = styled.a`
   display: flex;
@@ -10,7 +12,7 @@ const NavLink = styled.a`
   font-family: 'Roboto';
   font-weight: normal;
   text-decoration: none;
-  color: ${props => props.isActive ? '#007D51' : '#000000'};
+  color: ${props => props.isActive==='true' ? '#007D51' : '#000000'};
 
   &:hover {
     color: #007D51;
@@ -35,7 +37,7 @@ const NavLink = styled.a`
 
   svg {
       margin-right: 10px;
-      fill: ${props => props.isActive ? '#007D51' : '#7B7B7B'};
+      fill: ${props => props.isActive==='true' ? '#007D51' : '#7B7B7B'};
     }
 
   & + & {
@@ -51,7 +53,7 @@ const NavLink = styled.a`
   }
 `;
 
-export default class MainNavLink extends Component{
+class MainNavLink extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -77,17 +79,16 @@ export default class MainNavLink extends Component{
 
   handleClick = evt => {
     evt.preventDefault();
-    this.setState(() => ({
-        isActive: !this.state.isActive
-      }
-    )) 
+    
+    const {toggleActiveMainNavLink, id} = this.props;
+    toggleActiveMainNavLink(id);
+
   };
 
   render() {
-    const {href, title, iconSrc,text} = this.props;
-    // const colorLink = this.state.isActive ? {color: '#007D51'} : {color: '#000000'};
+    const {href, title, iconSrc,text,id} = this.props;
     return (
-      <NavLink className="main-nav__link" href={href} title={title} onClick={this.handleClick} isActive={this.state.isActive}>
+      <NavLink className="main-nav__link" href={href} title={title} onClick={this.handleClick} isActive={this.props.isActive}>
           <ReactSVG 
           evalScripts="always"
           src = {iconSrc}
@@ -101,3 +102,5 @@ export default class MainNavLink extends Component{
     )
   }
 } 
+
+export default connect(null, { toggleActiveMainNavLink })(MainNavLink);

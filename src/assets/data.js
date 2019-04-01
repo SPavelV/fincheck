@@ -5,7 +5,8 @@ export const mainMenu = [
     "text": "Доходы",
     "title": "Доходы",
     "iconSrc": "plus",
-    "iconTitle": "Иконка доходов"
+    "iconTitle": "Иконка доходов",
+    "isActive": "false"
   },
   {
     "id": "nav2",
@@ -13,7 +14,8 @@ export const mainMenu = [
     "text": "Расходы",
     "title": "Расходы",
     "iconSrc": "minus",
-    "iconTitle": "Иконка расходов"
+    "iconTitle": "Иконка расходов",
+    "isActive": "false"
   },
   { 
     "id": "nav3",
@@ -21,7 +23,8 @@ export const mainMenu = [
     "text": "Инвестиции",
     "title": "Инвестиции",
     "iconSrc": "bag",
-    "iconTitle": "Иконка инвестиций"
+    "iconTitle": "Иконка инвестиций",
+    "isActive": "false"
   },
   {
     "id": "nav4",
@@ -29,7 +32,8 @@ export const mainMenu = [
     "text": "Статистика",
     "title": "Статистика",
     "iconSrc": "chart",
-    "iconTitle": "Иконка статистика"
+    "iconTitle": "Иконка статистика",
+    "isActive": "false"
   },
   {
     id: "nav5",
@@ -37,6 +41,7 @@ export const mainMenu = [
     text: "Настройка",
     title: "Настройка",
     iconSrc: "params",
-    iconTitle: "Иконка настройка"
+    iconTitle: "Иконка настройка",
+    "isActive": "false"
   }
 ];
