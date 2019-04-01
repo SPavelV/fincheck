@@ -11,9 +11,12 @@ export default (mainMenuState = dafaultMainMenu, action) => {
         return navLink
       });
     case DELETE_NAV_LINK: 
-      return mainMenuState
+      return mainMenuState.filter(navLink => navLink.id !== payload.id);
     case EDIT_NAV_LINK_TEXT:
-      return mainMenuState
+      return mainMenuState.map(navLink => {
+        if(navLink.id === payload.id) navLink.text = payload.text;
+        return navLink;
+      })
     default :
       return mainMenuState;
   }

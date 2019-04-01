@@ -3,9 +3,11 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
-import {toggleActiveMainNavLink} from '../../actions'
+import {toggleActiveMainNavLink, deleteMainNavLink, editMainNavLinkText} from '../../actions'
+
 
 const NavLink = styled.a`
+  position:relative;
   display: flex;
   align-items: center;
   font-size: 0;
@@ -53,11 +55,55 @@ const NavLink = styled.a`
   }
 `;
 
+const DelLinkButton = styled.button`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -100%;
+  left: 0;
+  border-radius: 3px;
+  border: 1px solid #007D51;
+  color: #007D51;
+  background-color: #fff;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+  &:hover {
+    background-color: #007D51;
+    color: #fff;
+  }
+`
+
+const EditLinkText = styled(DelLinkButton)`
+  left: 25px;
+  width: 35px;
+`
+
+const InputTextLink = styled.input`
+  position: absolute;
+  top:100%;
+  left: 0;
+  font-size: 12px;
+  border: 1px solid #007D51;
+  color: #007D51;
+  display: ${props => props.isOpen ? 'block' : 'none'};
+
+  &:focus {
+    border: 1px solid #005D57;
+    color: #005D57;
+  }
+`
+
+
 class MainNavLink extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false
+      editInputOpen: false,
+      editInputValue: ''
     }
   }
 
@@ -77,7 +123,7 @@ class MainNavLink extends Component{
     iconTitle: PropTypes.string.isRequired
   }
 
-  handleClick = evt => {
+  handleClickLink = evt => {
     evt.preventDefault();
     
     const {toggleActiveMainNavLink, id} = this.props;
@@ -85,10 +131,31 @@ class MainNavLink extends Component{
 
   };
 
+  handleClickDelLink = (evt) => {
+    const {deleteMainNavLink, id} = this.props;
+    deleteMainNavLink(id);
+  }
+
+  handleClickEditLink = (evt) => {
+    const {id} = this.props;
+    console.log('---click edit link:',);
+    this.setState({editInputOpen: true})
+   
+  }
+
+  handleChangeInputEdit = (evt) => {
+    const {editMainNavLinkText, id} = this.props;
+    console.log('editInputValue :', evt.target.value);
+    this.setState({editInputValue: evt.target.value});
+    console.log('(this.setState.editInputValue :',this.state.editInputValue);
+  }
+
+
+
   render() {
-    const {href, title, iconSrc,text,id} = this.props;
+    const {href, title, iconSrc,text} = this.props;
     return (
-      <NavLink className="main-nav__link" href={href} title={title} onClick={this.handleClick} isActive={this.props.isActive}>
+      <NavLink contenteditable={true} className="main-nav__link" href={href} title={title} onClick={this.handleClickLink} isActive={this.props.isActive}>
           <ReactSVG 
           evalScripts="always"
           src = {iconSrc}
@@ -96,11 +163,17 @@ class MainNavLink extends Component{
           svgStyle={{ width: 15 }}
           wrapper="span"
           />
+
+
         {text}
+
+        <DelLinkButton onClick={this.handleClickDelLink}>x</DelLinkButton>
+        <EditLinkText onClick={this.handleClickEditLink}>Edit</EditLinkText>
+        <InputTextLink value={this.state.editInputValue} onInput={this.handleChangeInputEdit} type="text" isOpen={this.state.editInputOpen}/>
   
       </NavLink>
     )
   }
 } 
 
-export default connect(null, { toggleActiveMainNavLink })(MainNavLink);
+export default connect(null, { toggleActiveMainNavLink,deleteMainNavLink,editMainNavLinkText })(MainNavLink);
