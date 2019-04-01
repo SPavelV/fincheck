@@ -137,17 +137,33 @@ class MainNavLink extends Component{
   }
 
   handleClickEditLink = (evt) => {
-    const {id} = this.props;
-    console.log('---click edit link:',);
-    this.setState({editInputOpen: true})
-   
+    const {editMainNavLinkText, id} = this.props;
+
+    if(!this.state.editInputOpen) this.setState({editInputOpen: true})
+    else {
+      const inputValue =  this.state.editInputValue;
+      this.setState({
+        editInputOpen: false, 
+        editInputValue: ''
+      });
+      editMainNavLinkText(id, inputValue);
+    }
   }
 
+
+
   handleChangeInputEdit = (evt) => {
-    const {editMainNavLinkText, id} = this.props;
     console.log('editInputValue :', evt.target.value);
     this.setState({editInputValue: evt.target.value});
     console.log('(this.setState.editInputValue :',this.state.editInputValue);
+  }
+
+  handleEnterInputEdit = (evt) => {
+    if(evt.keyCode === 13) {
+      this.setState({editInputValue: evt.target.value});
+      return false;
+    }
+    return true;
   }
 
 
@@ -168,8 +184,8 @@ class MainNavLink extends Component{
         {text}
 
         <DelLinkButton onClick={this.handleClickDelLink}>x</DelLinkButton>
-        <EditLinkText onClick={this.handleClickEditLink}>Edit</EditLinkText>
-        <InputTextLink value={this.state.editInputValue} onInput={this.handleChangeInputEdit} type="text" isOpen={this.state.editInputOpen}/>
+        <EditLinkText onClick={this.handleClickEditLink}>{this.state.editInputOpen ? 'Save' : 'Edit'}</EditLinkText>
+        <InputTextLink value={this.state.editInputValue} onChange={this.handleChangeInputEdit} type="text" onKeyDown={this.handleEnterInputEdit} isOpen={this.state.editInputOpen}/>
   
       </NavLink>
     )
