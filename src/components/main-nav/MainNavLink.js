@@ -55,6 +55,28 @@ const NavLink = styled.a`
   }
 `;
 
+const editButton = `
+position: absolute;
+width: 20px;
+height: 20px;
+top: -100%;
+left: 0;
+border-radius: 3px;
+border: 1px solid #007D51;
+color: #007D51;
+background-color: #fff;
+font-size: 12px;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0;
+
+&:hover {
+  background-color: #007D51;
+  color: #fff;
+}
+`;
+
 const DelLinkButton = styled.button`
   position: absolute;
   width: 20px;
@@ -131,42 +153,50 @@ class MainNavLink extends Component{
 
   };
 
-  handleClickDelLink = (evt) => {
+  handleClickDelLink = () => {
     const {deleteMainNavLink, id} = this.props;
     deleteMainNavLink(id);
   }
 
-  handleClickEditLink = (evt) => {
+  saveValueInputText = (evt) => {
     const {editMainNavLinkText, id} = this.props;
-
-    if(!this.state.editInputOpen) this.setState({editInputOpen: true})
+    if(!this.state.editInputOpen) {
+      this.setState({editInputOpen: true});
+    }
     else {
       const inputValue =  this.state.editInputValue;
-      this.setState({
-        editInputOpen: false, 
-        editInputValue: ''
-      });
+      this.clearValueInputText()
       editMainNavLinkText(id, inputValue);
     }
   }
 
-
-
-  handleChangeInputEdit = (evt) => {
-    console.log('editInputValue :', evt.target.value);
-    this.setState({editInputValue: evt.target.value});
-    console.log('(this.setState.editInputValue :',this.state.editInputValue);
+  clearValueInputText = () => {
+    this.setState(
+      {
+        editInputOpen: false,
+        editInputValue: ''
+      }
+    );
   }
 
-  handleEnterInputEdit = (evt) => {
+  handleClickEditLink = (evt) => {
+    this.saveValueInputText(evt);
+  }
+
+  handleChangeInputEdit = (evt) => {
+    this.setState({editInputValue: evt.target.value});
+  }
+
+  handleEnterKyeDownInputEdit = (evt) => {
     if(evt.keyCode === 13) {
-      this.setState({editInputValue: evt.target.value});
+      this.saveValueInputText(evt);
+      return false;
+    } else if (evt.keyCode === 27) {
+      this.clearValueInputText();
       return false;
     }
     return true;
   }
-
-
 
   render() {
     const {href, title, iconSrc,text} = this.props;
@@ -185,8 +215,8 @@ class MainNavLink extends Component{
 
         <DelLinkButton onClick={this.handleClickDelLink}>x</DelLinkButton>
         <EditLinkText onClick={this.handleClickEditLink}>{this.state.editInputOpen ? 'Save' : 'Edit'}</EditLinkText>
-        <InputTextLink value={this.state.editInputValue} onChange={this.handleChangeInputEdit} type="text" onKeyDown={this.handleEnterInputEdit} isOpen={this.state.editInputOpen}/>
-  
+        <InputTextLink value={this.state.editInputValue} onChange={this.handleChangeInputEdit} type="text" onKeyDown={this.handleEnterKyeDownInputEdit} isOpen={this.state.editInputOpen}/>
+  a
       </NavLink>
     )
   }
