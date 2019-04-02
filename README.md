@@ -1,6 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Learning Raect js
+
+Creating personal finance application. 
+
+UX prototype [design](https://www.figma.com/file/VNH5YPVRN3pKMLejPxi4sCbz/fincheck?node-id=1%3A34).<br>
+Test [application](http://fincheck.bugbug.ru/).
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
