@@ -6,7 +6,6 @@ import './assets/fonts/Roboto/stylesheet.css';
 import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
-import Counter from './components/Counter';
 
 
 const Header = styled.header`
@@ -73,7 +72,6 @@ class App extends Component {
           <MainNav />
         
         </Header>
-        <Counter/>
       </AppContainer>
     );
   }
