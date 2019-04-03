@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import {toggleActiveMainNavLink, deleteMainNavLink, editMainNavLinkText,toggleInputEdit} from '../../actions'
 
+import bag from '../../assets/images/icons/bag.svg';
+import chart from '../../assets/images/icons/chart.svg';
+import minus from '../../assets/images/icons/minus.svg';
+import params from '../../assets/images/icons/params.svg';
+import plus from '../../assets/images/icons/plus.svg';
 
 const NavLink = styled.a`
   position:relative;
@@ -14,7 +19,7 @@ const NavLink = styled.a`
   font-family: 'Roboto';
   font-weight: normal;
   text-decoration: none;
-  color: ${props => props.isActive==='true' ? '#007D51' : '#000000'};
+  color: ${props => props.isActive ? '#007D51' : '#000000'};
 
   &:hover {
     color: #007D51;
@@ -39,7 +44,7 @@ const NavLink = styled.a`
 
   svg {
       margin-right: 10px;
-      fill: ${props => props.isActive==='true' ? '#007D51' : '#7B7B7B'};
+      fill: ${props => props.isActive ? '#007D51' : '#7B7B7B'};
     }
 
   & + & {
@@ -97,20 +102,22 @@ const InputTextLink = styled.input`
   }
 `
 
-
 class MainNavLink extends Component{
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
     this.state = {
-      editInputValue: ''
+      editInputValue: '',
+      isActive: false,
+      isEditInputOpen: false,
+      isAdminPanel: true
     }
+    this.iconsMenu = [bag,chart,minus,params,plus];
   }
 
   static propTypes = {
     href: PropTypes.string,
     text: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     iconSrc: PropTypes.string,
     iconTitle: PropTypes.string.isRequired
   }
@@ -118,7 +125,6 @@ class MainNavLink extends Component{
   static defaultProps = {
     href: PropTypes.string,
     text: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     iconSrc: PropTypes.string,
     iconTitle: PropTypes.string.isRequired
   }
@@ -126,8 +132,11 @@ class MainNavLink extends Component{
   handleClickLink = evt => {
     evt.preventDefault();
     
-    const {toggleActiveMainNavLink, id} = this.props;
-    toggleActiveMainNavLink(id);
+    // const {toggleActiveMainNavLink, id} = this.props;
+    // toggleActiveMainNavLink(id);
+    this.setState({
+      isActive: !this.state.isActive
+    })
 
   };
 
@@ -136,12 +145,13 @@ class MainNavLink extends Component{
     deleteMainNavLink(id);
   }
 
-  saveValueInputText = (evt) => {
-    const {editMainNavLinkText,toggleInputEdit, id, editInputOpen} = this.props;
+  saveValueInputText = () => {
+    const {editMainNavLinkText,id} = this.props;
 
-    if(editInputOpen === 'false') {
-      toggleInputEdit(id);
-      this.textInput.current.focus();
+    if(!this.state.isEditInputOpen) {
+      this.setState({
+        isEditInputOpen: true
+      },()=>this.textInput.current.focus())
     }
     else {
       const inputValue =  this.state.editInputValue;
@@ -152,11 +162,10 @@ class MainNavLink extends Component{
   }
 
   clearValueInputText = () => {
-    const {toggleInputEdit,id} = this.props;
-    toggleInputEdit(id);
     this.setState(
       {
-        editInputValue: ''
+        editInputValue: '',
+        isEditInputOpen: false
       }
     );
   }
@@ -171,7 +180,7 @@ class MainNavLink extends Component{
 
   handleEnterKyeDownInputEdit = (evt) => {
     if(evt.keyCode === 13) {
-      this.saveValueInputText(evt);
+      this.saveValueInputText();
       return false;
     } else if (evt.keyCode === 27) {
       this.clearValueInputText();
@@ -184,37 +193,66 @@ class MainNavLink extends Component{
     this.textInput.current.focus();
   }
 
-  render() {
-    const {href, title, iconSrc,text, editInputOpen} = this.props;
-    const isOpenEdit = editInputOpen === 'false' ? false : true;
+  getSvgIcon = (iconName) => {
+    const currIcon = this.iconsMenu.filter(icon => {
+      if(icon.indexOf(iconName) !== -1) return icon;
+    })[0];
+
+    return currIcon;
+  }
+
+  getDeleteLink() {
+    if(!this.state.isAdminPanel) return;
+    return  <DelLinkButton onClick={this.handleClickDelLink}>x</DelLinkButton>;
+  }
+
+  getEditButton() {
+    if(!this.state.isAdminPanel) return;
+    return <EditLinkText onClick={this.handleClickEditLink}>{this.state.isEditInputOpen ? 'Save' : 'Edit'}</EditLinkText>;
+  }
+
+  getInputEdit() {
+    if(!this.state.isAdminPanel) return;
     return (
-      <NavLink className="main-nav__link" href={href} title={title} onClick={this.handleClickLink} isActive={this.props.isActive}>
+        <InputTextLink 
+        value={this.state.editInputValue} 
+        onChange={this.handleChangeInputEdit} 
+        type="text" 
+        onKeyDown={this.handleEnterKyeDownInputEdit} 
+        ref={this.textInput}
+        isOpen={this.state.isEditInputOpen}
+        />
+      );
+  }
+
+  render() {
+    const {href, iconSrc,text, editInputOpen} = this.props;
+    // const isOpenEdit = editInputOpen === 'false' ? false : true;8
+    return (
+      <NavLink 
+        className="main-nav__link" 
+        href={href} 
+        title={text} 
+        onClick={this.handleClickLink} 
+        isActive={this.state.isActive}>
           <ReactSVG 
           evalScripts="always"
-          src = {iconSrc}
+          src = {this.getSvgIcon(iconSrc)}
           svgClassName="main-nav__icon"
           svgStyle={{ width: 15 }}
           wrapper="span"
           />
-
-
         {text}
 
-        <DelLinkButton onClick={this.handleClickDelLink}>x</DelLinkButton>
-        <EditLinkText onClick={this.handleClickEditLink}>{isOpenEdit ? 'Save' : 'Edit'}</EditLinkText>
-        <InputTextLink 
-          value={this.state.editInputValue} 
-          onChange={this.handleChangeInputEdit} 
-          type="text" 
-          onKeyDown={this.handleEnterKyeDownInputEdit} 
-          isOpen={isOpenEdit}
-          ref={this.textInput}
-          />
+        {this.getDeleteLink()}
+        {this.getEditButton()}
+        {this.getInputEdit()}
+       
       </NavLink>
     )
   }
 } 
 
-export default connect(null, { toggleActiveMainNavLink,deleteMainNavLink,editMainNavLinkText,toggleInputEdit })(MainNavLink);
+export default connect(null, { deleteMainNavLink,editMainNavLinkText })(MainNavLink);
 
 
