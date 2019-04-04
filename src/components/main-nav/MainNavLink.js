@@ -89,9 +89,10 @@ class MainNavLink extends Component{
   }
 
   render() {
-    const {isActive,href, iconSrc,text,isAdmin} = this.props;
+    const {isActive,href, iconSrc,text,isAdmin,isEditInputActive} = this.props;
     return (
       <NavLink 
+        {...this.props}
         className="main-nav__link" 
         href={href} 
         title={text} 
@@ -106,8 +107,9 @@ class MainNavLink extends Component{
           />
 
           {isAdmin ?  <EditingLinkMainNav 
-              isOpen = {isActive}
+              isEditInputActive = {isEditInputActive}
               id = {this.props.id}
+              getIdLinkInputEditActive={this.props.getIdLinkInputEditActive}
             />: null
           }
           

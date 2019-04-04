@@ -45,7 +45,7 @@ const InputTextLink = styled.input`
   font-size: 12px;
   border: 1px solid #007D51;
   color: #007D51;
-  display: ${props => props.isOpen ? 'block' : 'none'};
+  display: ${props => props.isActive ? 'block' : 'none'};
 
   &:focus {
     border: 1px solid #005D57;
@@ -59,7 +59,7 @@ class EditingLinkMainNav extends React.Component{
     this.textInput = React.createRef();
     this.state = {
       editInputValue: '',
-      isActiveInput: false
+
     }
   }
 
@@ -69,26 +69,20 @@ class EditingLinkMainNav extends React.Component{
   }
 
   saveValueInputText = () => {
-    const {editMainNavLinkText,id,isOpen} = this.props;
-
-    if(!isOpen) {
-      this.setState({
-        isActiveInput: true,
-      },()=>this.textInput.current.focus())
-    }
-    else {
-      const inputValue =  this.state.editInputValue;
-      this.clearValueInputText();
-      if(inputValue === '') return;
-      editMainNavLinkText(id, inputValue);
-    }
+    const {editMainNavLinkText,id} = this.props;
+    this.props.getIdLinkInputEditActive(id);
+    this.textInput.current.focus();
+    const inputValue =  this.state.editInputValue;
+    this.clearValueInputText();
+    if(inputValue === '') return;
+    editMainNavLinkText(id, inputValue);
+    this.props.getIdLinkInputEditActive(null);
   }
 
   clearValueInputText = () => {
     this.setState(
       {
         editInputValue: '',
-        // isActiveInput: false,
       }
     );
   }
@@ -106,7 +100,7 @@ class EditingLinkMainNav extends React.Component{
       this.saveValueInputText();
       return false;
     } else if (evt.keyCode === 27) {
-      this.clearValueInputText();
+      this.props.getIdLinkInputEditActive(null);
       return false;
     }
     return true;
@@ -122,7 +116,7 @@ class EditingLinkMainNav extends React.Component{
   }
 
   getEditButton() {
-    return <EditLinkText onClick={this.handleClickEditLink}>{this.props.isOpen && this.state.isActiveInput ? 'Save' : 'Edit'}</EditLinkText>;
+    return <EditLinkText onClick={this.handleClickEditLink}>{this.props.isEditInputActive ? 'Save' : 'Edit'}</EditLinkText>;
   }
 
   getInputEdit() {
@@ -133,15 +127,14 @@ class EditingLinkMainNav extends React.Component{
         type="text" 
         onKeyDown={this.handleEnterKyeDownInputEdit} 
         ref={this.textInput}
-        isOpen={this.props.isOpen && this.state.isActiveInput}
+        isActive={this.props.isEditInputActive}
         />
       );
   }
 
   render() { 
     return (
-      <InnerButtonsEditor 
-        isOpen={this.props.isActive}>
+      <InnerButtonsEditor {...this.props}>
           {this.getDeleteLink()}
           {this.getEditButton()}
           {this.getInputEdit()}

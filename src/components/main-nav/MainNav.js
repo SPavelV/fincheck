@@ -15,7 +15,8 @@ const Nav = styled.nav`
 class MainNav extends Component {
   state = {
     activeLinkId: null,
-    activeInputEdit: false
+    isEditInputActive: false,
+    idLinkInputEditActive: null
   }
 
   static propTypes = {
@@ -30,7 +31,9 @@ class MainNav extends Component {
           {...menuItem} 
           isActive = {menuItem.id === this.state.activeLinkId} 
           toggleLink = { (evt) => this.handleClickLink(evt, menuItem.id)}
-          isAdmin={false}
+          isAdmin={true}
+          isEditInputActive = {this.state.idLinkInputEditActive === menuItem.id}
+          getIdLinkInputEditActive = {this.getIdLinkInputEditActive}
 
         ></MainNavLink>
     });
@@ -47,8 +50,16 @@ class MainNav extends Component {
     this.setState( { activeLinkId } );
   };
 
-  hidenInputEdit = () => {
-    
+  isEditInputActive = (idLink) => {
+    this.setState({
+      isEditInputActive: idLink
+    })
+  }
+
+  getIdLinkInputEditActive = (id) => {
+    this.setState({
+      idLinkInputEditActive:id
+    })
   }
 }
 
