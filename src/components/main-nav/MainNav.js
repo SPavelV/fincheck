@@ -50,12 +50,6 @@ class MainNav extends Component {
     this.setState( { activeLinkId } );
   };
 
-  isEditInputActive = (idLink) => {
-    this.setState({
-      isEditInputActive: idLink
-    })
-  }
-
   getIdLinkInputEditActive = (id) => {
     this.setState({
       idLinkInputEditActive:id
