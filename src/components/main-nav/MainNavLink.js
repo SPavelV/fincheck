@@ -89,7 +89,7 @@ class MainNavLink extends Component{
   }
 
   render() {
-    const {isActive,href, iconSrc,text, editInputOpen} = this.props;
+    const {isActive,href, iconSrc,text,isAdmin} = this.props;
     return (
       <NavLink 
         className="main-nav__link" 
@@ -104,13 +104,13 @@ class MainNavLink extends Component{
           svgStyle={{ width: 15 }}
           wrapper="span"
           />
-           <EditingLinkMainNav 
-              isActive = {this.props.isActive}
-              isAdminPanel = {true}
-              isActiveInput = {false}
-              id={this.props.id}
-              toggleInput = {this.props.toggleInput}
-            />
+
+          {isAdmin ?  <EditingLinkMainNav 
+              isOpen = {isActive}
+              id = {this.props.id}
+            />: null
+          }
+          
         {text}
       </NavLink>
     )

@@ -15,7 +15,7 @@ const Nav = styled.nav`
 class MainNav extends Component {
   state = {
     activeLinkId: null,
-    activeInputEditingId: null
+    activeInputEdit: false
   }
 
   static propTypes = {
@@ -30,8 +30,9 @@ class MainNav extends Component {
           {...menuItem} 
           isActive = {menuItem.id === this.state.activeLinkId} 
           toggleLink = { (evt) => this.handleClickLink(evt, menuItem.id)}
-          toggleInput = { () => this.toggleInput(menuItem.id)}
-        >sdfasfaf</MainNavLink>
+          isAdmin={false}
+
+        ></MainNavLink>
     });
     
     return ( 
@@ -46,10 +47,9 @@ class MainNav extends Component {
     this.setState( { activeLinkId } );
   };
 
-  toggleInput = (activeInputEditingId) => {
-    this.setState( { activeInputEditingId } );
-    return activeInputEditingId;
-  };
+  hidenInputEdit = () => {
+    
+  }
 }
 
 export default connect(state => ({

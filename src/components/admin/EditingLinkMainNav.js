@@ -59,7 +59,7 @@ class EditingLinkMainNav extends React.Component{
     this.textInput = React.createRef();
     this.state = {
       editInputValue: '',
-      isEditInputOpen: false
+      isActiveInput: false
     }
   }
 
@@ -69,12 +69,11 @@ class EditingLinkMainNav extends React.Component{
   }
 
   saveValueInputText = () => {
-    const {editMainNavLinkText,id,toggleInput} = this.props;
-    console.log('editMainNavLinkText',id)
-    
-    if(!this.state.isEditInputOpen) {
+    const {editMainNavLinkText,id,isOpen} = this.props;
+
+    if(!isOpen) {
       this.setState({
-        isEditInputOpen: true
+        isActiveInput: true,
       },()=>this.textInput.current.focus())
     }
     else {
@@ -89,8 +88,7 @@ class EditingLinkMainNav extends React.Component{
     this.setState(
       {
         editInputValue: '',
-        isEditInputOpen: false,
-        isActive: true
+        // isActiveInput: false,
       }
     );
   }
@@ -120,17 +118,14 @@ class EditingLinkMainNav extends React.Component{
 
 
   getDeleteLink() {
-    if(!this.props.isAdminPanel) return;
     return  <DelLinkButton onClick={this.handleClickDelLink}>x</DelLinkButton>;
   }
 
   getEditButton() {
-    if(!this.props.isAdminPanel) return;
-    return <EditLinkText onClick={this.handleClickEditLink}>{this.state.isEditInputOpen ? 'Save' : 'Edit'}</EditLinkText>;
+    return <EditLinkText onClick={this.handleClickEditLink}>{this.props.isOpen && this.state.isActiveInput ? 'Save' : 'Edit'}</EditLinkText>;
   }
 
   getInputEdit() {
-    if(!this.props.isAdminPanel) return;
     return (
         <InputTextLink 
         value={this.state.editInputValue} 
@@ -138,7 +133,7 @@ class EditingLinkMainNav extends React.Component{
         type="text" 
         onKeyDown={this.handleEnterKyeDownInputEdit} 
         ref={this.textInput}
-        isOpen={this.state.isEditInputOpen}
+        isOpen={this.props.isOpen && this.state.isActiveInput}
         />
       );
   }
@@ -146,8 +141,7 @@ class EditingLinkMainNav extends React.Component{
   render() { 
     return (
       <InnerButtonsEditor 
-        isOpen={this.props.isOpen} 
-        isAdminPanel={this.props.isAdminPanel}>
+        isOpen={this.props.isActive}>
           {this.getDeleteLink()}
           {this.getEditButton()}
           {this.getInputEdit()}
