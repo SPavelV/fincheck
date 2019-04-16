@@ -31,7 +31,7 @@ class MainNav extends Component {
           {...menuItem} 
           isActive = {menuItem.id === this.state.activeLinkId} 
           toggleLink = { (evt) => this.handleClickLink(evt, menuItem.id)}
-          isAdmin={true}
+          isAdmin={false}
           isEditInputActive = {this.state.idLinkInputEditActive === menuItem.id}
           getIdLinkInputEditActive = {this.getIdLinkInputEditActive}
 

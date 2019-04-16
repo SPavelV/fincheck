@@ -69,14 +69,14 @@ class EditingLinkMainNav extends React.Component{
   }
 
   saveValueInputText = () => {
-    const {editMainNavLinkText,id} = this.props;
-    this.props.getIdLinkInputEditActive(id);
+    const {editMainNavLinkText,id,getIdLinkInputEditActive} = this.props;
+    getIdLinkInputEditActive(id);
     this.textInput.current.focus();
     const inputValue =  this.state.editInputValue;
     this.clearValueInputText();
     if(inputValue === '') return;
     editMainNavLinkText(id, inputValue);
-    this.props.getIdLinkInputEditActive(null);
+    getIdLinkInputEditActive(null);
   }
 
   clearValueInputText = () => {
