@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import {connect} from 'react-redux';
+import styled from 'styled-components';
+import {maxWidth,gutterDesktop,gutterMobile,mediaMinWidthDesktop} from '../common-styles';
 
 const AlertInner = styled.section`
-  display: block;
+  padding: ${gutterMobile};
+  max-width: ${maxWidth};
+  width: 100%;
+  margin: 0 auto;
+
+  @media(min-width: ${mediaMinWidthDesktop}) {
+    padding: ${gutterDesktop};
+  }
 `;
 
 const AlertHeader = styled.div`

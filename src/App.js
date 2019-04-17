@@ -9,13 +9,21 @@ import MainNav from './components/main-nav/MainNav';
 import Alert from './components/Alert'
 
 
+import {maxWidth,gutterDesktop,gutterMobile,mediaMinWidthDesktop} from './common-styles';
+
+
 const Header = styled.header`
-  padding: 20px;
+  padding: ${gutterMobile};
   display: flex;
   justify-content: space-between;
-  max-width: 1360px;
+  max-width: ${maxWidth};
   width: 100%;
   margin: 0 auto;
+
+  @media(min-width: ${mediaMinWidthDesktop}) {
+    padding: ${gutterDesktop};
+  }
+
 `;
 
 const AppContainer = styled.div`
