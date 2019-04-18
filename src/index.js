@@ -6,5 +6,8 @@ import 'normalize.css';
 import store from './store'
 
 const appContainer = document.getElementById("app");
+appContainer.style.cssText=`
+  padding: 0 15px;
+`
 
 render(<Root/>,appContainer);

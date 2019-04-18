@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
-import {deleteMainNavLink, editMainNavLinkText} from '../../actions'
+import {deleteMainNavLink, editMainNavLinkText} from '../../actions';
+
+import {greenColor} from '../../common-styles';
 
 const InnerButtonsEditor = styled.div`
   position: absolute;
@@ -18,8 +20,8 @@ const DelLinkButton = styled.button`
   height: 20px;
   margin-right: 5px;
   border-radius: 3px;
-  border: 1px solid #007D51;
-  color: #007D51;
+  border: 1px solid ${greenColor};
+  color: ${greenColor};
   background-color: #fff;
   font-size: 12px;
   display: flex;
@@ -28,7 +30,7 @@ const DelLinkButton = styled.button`
   padding: 0;
 
   &:hover {
-    background-color: #007D51;
+    background-color: ${greenColor};
     color: #fff;
   }
 `
@@ -43,8 +45,8 @@ const InputTextLink = styled.input`
   top: 200%;
   left: 0;
   font-size: 12px;
-  border: 1px solid #007D51;
-  color: #007D51;
+  border: 1px solid ${greenColor};
+  color: ${greenColor};
   display: ${props => props.isActive ? 'block' : 'none'};
 
   &:focus {
