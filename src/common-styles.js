@@ -21,6 +21,9 @@ export const greenColor = `#007D51`;
 export const borderColor = lightGrayColor;
 export const bgSectionColor = secondLightGrayColor;
 
+export const linkHoverColor = greenColor;
+export const linkColor = grayColor;
+
 //shadow:
 export const sectionShadow = `0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);`
 
@@ -34,7 +37,7 @@ export const SectionTitle = styled.div`
   color: ${grayColor};
 
   @media(min-width: ${mediaMinWidthDesktop}) {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 20px;
   }
 `;
@@ -44,7 +47,7 @@ export const SectionLinkTitle = styled.a`
   font-weight: 500;
   font-size: 9px;
   line-height: 19px;
-  color: ${grayColor};
+  color: ${balckColor};
   text-transform: uppercase;
   text-decoration: none;
 
