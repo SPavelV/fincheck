@@ -14,7 +14,7 @@ export const secondFont = eczarFont;
 
 //colors:
 export const balckColor = `rgba(0, 0, 0, 0.87)`;
-export const grayColor = `rgba(0, 0, 0, 0.6)`;
+export const grayColor =  `#7B7B7B`;
 export const lightGrayColor = `#E5E5E5`;
 export const secondLightGrayColor = `#FAFAFA;`;
 export const greenColor = `#007D51`;

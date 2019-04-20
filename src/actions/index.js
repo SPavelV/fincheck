@@ -1,4 +1,11 @@
-import {TOGGLE_MAIN_NAV_LINK,DELETE_NAV_LINK, EDIT_NAV_LINK_TEXT,TOGGLE_INPUT_EDIT} from '../constants';
+import {
+  TOGGLE_MAIN_NAV_LINK,
+  DELETE_NAV_LINK, 
+  EDIT_NAV_LINK_TEXT,
+  TOGGLE_INPUT_EDIT,
+  ADD_ALERT_ITEM,
+  DEL_ALERT_ITEM
+} from '../constants';
 
 export function toggleActiveMainNavLink(id) {
   return {
@@ -24,6 +31,20 @@ export function editMainNavLinkText(id,text) {
 export function toggleInputEdit(id) {
   return {
     type: TOGGLE_INPUT_EDIT,
+    payload: { id }
+  }
+}
+
+export function addAlertItem(id) {
+  return {
+    type: ADD_ALERT_ITEM,
+    payload: { id }
+  }
+}
+
+export function delAlertItem(id) {
+  return {
+    type: DEL_ALERT_ITEM,
     payload: { id }
   }
 }
