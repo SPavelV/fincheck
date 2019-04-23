@@ -129,7 +129,9 @@ class Alert extends React.Component {
     this.state={
       isActive: true,
       isViewAllItems: false,
-      initQtyElements: 3
+      initQtyElements: 3,
+      isSorting: false,
+      initData: this.props.data
     }
   }
 
@@ -196,6 +198,10 @@ class Alert extends React.Component {
           wrapper="span"
           />
     </SortLink>
+  }
+
+  sort = () => {
+
   }
 
   render() {

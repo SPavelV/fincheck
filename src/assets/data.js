@@ -97,3 +97,8 @@ export const alerts = [
     "date": "2016-06-02T11:03:23.000Z"
   }
 ]
+
+
+export const filters = {
+
+}
