@@ -4,7 +4,8 @@ import {
   EDIT_NAV_LINK_TEXT,
   TOGGLE_INPUT_EDIT,
   ADD_ALERT_ITEM,
-  DEL_ALERT_ITEM
+  DEL_ALERT_ITEM,
+  SORT_DATE_ALERTS_ITEM
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -46,5 +47,14 @@ export function delAlertItem(id) {
   return {
     type: DEL_ALERT_ITEM,
     payload: { id }
+  }
+}
+
+export function sortDateAlertsItem(isSorting) {
+  console.log('sortDateAlertsItem');
+  console.log('isSorting',isSorting);
+  return {
+    type: SORT_DATE_ALERTS_ITEM,
+    payload: { isSorting }
   }
 }

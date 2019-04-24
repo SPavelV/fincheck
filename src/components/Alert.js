@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
+import {sortDateAlertsItem} from '../actions/'
 import styled from 'styled-components';
 
 import sortIcon from '../assets/images/icons/sort.svg'
@@ -191,7 +192,7 @@ class Alert extends React.Component {
   }
 
   getSortLink = () => {
-    return <SortLink href="this.props.href">
+    return <SortLink onClick={this.handlerClickSortLink} href="this.props.href">
        <ReactSVG 
           evalScripts="always"
           src = {sortIcon}
@@ -200,8 +201,19 @@ class Alert extends React.Component {
     </SortLink>
   }
 
-  sort = () => {
+  handlerClickSortLink = (evt) => {
+    evt.preventDefault();
+    console.log('---click sorting btn:',);
+    
+    const {sortDateAlertsItem} = this.props;
 
+    sortDateAlertsItem(this.state.isSorting)
+   
+    // this.setState((prevState, props) => {
+    //   return {
+    //     isSorting: !prevState.isSorting
+    //   }
+    // })
   }
 
   render() {
@@ -215,5 +227,6 @@ class Alert extends React.Component {
 }
 
 export default connect(state => ({
-  dataAlerts: state.alerts
+  dataAlerts: state.alerts,
+  sortDateAlertsItem
 }))(Alert);
