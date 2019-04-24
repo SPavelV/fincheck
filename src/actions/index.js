@@ -5,7 +5,7 @@ import {
   TOGGLE_INPUT_EDIT,
   ADD_ALERT_ITEM,
   DEL_ALERT_ITEM,
-  SORT_DATE_ALERTS_ITEM
+  SORT_DATES_ALERTS_ITEM
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -51,10 +51,8 @@ export function delAlertItem(id) {
 }
 
 export function sortDateAlertsItem(isSorting) {
-  console.log('sortDateAlertsItem');
-  console.log('isSorting',isSorting);
   return {
-    type: SORT_DATE_ALERTS_ITEM,
+    type: SORT_DATES_ALERTS_ITEM,
     payload: { isSorting }
   }
 }

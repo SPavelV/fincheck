@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import mainMenuReducer from './mainMenu';
+import mainMenu from './mainMenu';
 import alerts from './alerts';
 
 export default combineReducers({
-  mainMenu: mainMenuReducer,
-  alerts: alerts
+  mainMenu,
+  alerts
 })

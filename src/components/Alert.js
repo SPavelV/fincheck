@@ -203,17 +203,17 @@ class Alert extends React.Component {
 
   handlerClickSortLink = (evt) => {
     evt.preventDefault();
-    console.log('---click sorting btn:',);
+    console.log('---this.state.isSorting:',this.state.isSorting);
     
     const {sortDateAlertsItem} = this.props;
 
     sortDateAlertsItem(this.state.isSorting)
    
-    // this.setState((prevState, props) => {
-    //   return {
-    //     isSorting: !prevState.isSorting
-    //   }
-    // })
+    this.setState((prevState, props) => {
+      return {
+        isSorting: !prevState.isSorting
+      }
+    })
   }
 
   render() {
@@ -225,8 +225,9 @@ class Alert extends React.Component {
     </Inner>
   }
 }
+const mapStateToProps = state => ({
+  dataAlerts: state.alerts
+});
+const mapDispatchToProps = {sortDateAlertsItem};
 
-export default connect(state => ({
-  dataAlerts: state.alerts,
-  sortDateAlertsItem
-}))(Alert);
+export default connect(mapStateToProps,mapDispatchToProps)(Alert);
