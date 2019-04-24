@@ -6,7 +6,8 @@ import './assets/fonts/Roboto/stylesheet.css';
 import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
-import Alert from './components/Alert'
+import Alert from './components/Alert';
+import PreviewCard from './components/PreviewCard';
 
 
 import {maxWidth,gutterDesktop,gutterMobile,mediaMinWidthDesktop} from './common-styles';
@@ -82,6 +83,7 @@ class App extends Component {
         
         </Header>
         <Alert/>
+        <PreviewCard sectionTitle="Доходы"/>
       </AppContainer>
     );
   }

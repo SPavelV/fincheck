@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
@@ -9,6 +8,7 @@ import styled from 'styled-components';
 import sortIcon from '../assets/images/icons/sort.svg'
 
 import {
+  PageInner,
   maxWidth,
   gutterDesktop,
   gutterMobile,
@@ -24,18 +24,8 @@ import {
   grayColor
 } from '../common-styles';
 
-const Inner = styled.section`
+const Inner = styled(PageInner)`
   position: relative;
-  padding: ${gutterMobile};
-  max-width: ${maxWidth};
-  width: 100%;
-  margin: 0 auto;
-  background-color: ${bgSectionColor}
-  box-shadow: ${sectionShadow};
-
-  @media(min-width: ${mediaMinWidthDesktop}) {
-    padding: ${gutterDesktop};
-  }
 `;
 
 const Header = styled.div`
@@ -137,7 +127,7 @@ class Alert extends React.Component {
   }
 
   static propTypes = {
-    dataAlerts: PropTypes.array
+    dataAlerts: PropTypes.array.isRequired
   }
 
   static defaultPorps = {
@@ -169,18 +159,14 @@ class Alert extends React.Component {
     )
   }
 
-  isVisibleItem = (indexElement,maxQtyElements) => {
-    return indexElement < maxQtyElements; 
-  }
-
   getListAlert = (dataAlerts) => {
     const listItems =  dataAlerts.map( (item,i,arr) => {
+
       let maxQtyElements = this.state.isViewAllItems ? arr.length : this.state.initQtyElements;
   
       return <ListItem 
                 key={item.id} 
-                maxQty={this.state.maxQty} 
-                isVisible={this.isVisibleItem(i,maxQtyElements)}>
+                isVisible={i < maxQtyElements}>
                   <ListLink href={item.href}>
                     {item.text}
                   </ListLink>
@@ -203,12 +189,8 @@ class Alert extends React.Component {
 
   handlerClickSortLink = (evt) => {
     evt.preventDefault();
-    console.log('---this.state.isSorting:',this.state.isSorting);
-    
     const {sortDateAlertsItem} = this.props;
-
     sortDateAlertsItem(this.state.isSorting)
-   
     this.setState((prevState, props) => {
       return {
         isSorting: !prevState.isSorting

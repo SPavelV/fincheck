@@ -95,6 +95,12 @@ export const alerts = [
 ]
 
 
-export const filters = {
-
-}
+export const income = 
+  [
+    {
+      "id": "Alert9",
+      "href": "/Alert3",
+      "text": "Заплатить штраф за превышение скорости 2017-04-02",
+      "date": "2017-04-02T11:03:23.000Z"
+    }
+  ]
