@@ -7,7 +7,7 @@ import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
 import Alert from './components/Alert';
-import PreviewCard from './components/PreviewCard';
+import PreviewCard from './components/preview-card/PreviewCard';
 
 
 import {maxWidth,gutterDesktop,gutterMobile,mediaMinWidthDesktop} from './common-styles';

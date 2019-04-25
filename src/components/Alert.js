@@ -9,7 +9,6 @@ import sortIcon from '../assets/images/icons/sort.svg'
 
 import {
   PageInner,
-  maxWidth,
   gutterDesktop,
   gutterMobile,
   mediaMinWidthDesktop,
@@ -17,7 +16,6 @@ import {
   SectionLinkTitle,
   borderColor,
   bgSectionColor,
-  sectionShadow,
   linkHoverColor,
   firstFont,
   linkColor,

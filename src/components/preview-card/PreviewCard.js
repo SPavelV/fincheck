@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
+import ChartLine from './ChartLine';
 
 import styled from 'styled-components';
 
@@ -20,7 +21,7 @@ import  {
   firstFont,
   linkColor,
   grayColor
-} from '../common-styles';
+} from '../../common-styles';
 
 const Inner = styled(PageInner)`
   margin-top: 5px;
@@ -59,6 +60,7 @@ class PreviewCard extends React.Component {
     return (
       <Inner {...this.props}>
         <SectionTitle>{this.props.sectionTitle}</SectionTitle>
+        <ChartLine></ChartLine>
 
       </Inner>
     )
