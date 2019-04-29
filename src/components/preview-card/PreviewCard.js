@@ -32,6 +32,16 @@ const Inner = styled(PageInner)`
 `;
 
 
+const dataIncomeLineChart = [
+  {
+    uv: 1000,
+    pv: 2000,
+    amt: 3000,
+    lm: 2000
+  }
+]
+
+
 class PreviewCard extends React.Component {
   constructor(props) {
     super(props);
@@ -60,7 +70,7 @@ class PreviewCard extends React.Component {
     return (
       <Inner {...this.props}>
         <SectionTitle>{this.props.sectionTitle}</SectionTitle>
-        <ChartLine></ChartLine>
+        <ChartLine chartData={dataIncomeLineChart} ></ChartLine>
 
       </Inner>
     )

@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {greenColor} from '../../common-styles';
-
 import {BarChart, Bar, ResponsiveContainer, XAxis, YAxis} from 'recharts';
+
+import {greenColorArr} from '../../common-styles';
 
 const Inner = styled.section`
   position: relative;
@@ -13,45 +12,40 @@ const Inner = styled.section`
 `;
 
 const Chart = styled.div`
-  /* position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: ${greenColor}; */
   height: 1px;
   width: 100%;
-
 `;
-
-const data = [
-  {
-    uv: 1000,
-    pv: 2000,
-    amt: 3000,
-    lm: 2000
-  }
-]
 
 export default class ChartLine extends React.Component{
   constructor(props) {
     super(props);
-    this.chartRef = React.createRef();
     this.state = {
     }
   }
 
   static defaultProps = [
     {
-
+      value: 0
     }
   ]
 
   static propTypes = {
-
+    chartData: PropTypes.arrayOf(PropTypes.object).isRequired
   }
 
-  addChart() {
+  addChart(data) {
+    
+    const barKeyArr= [];
+    for(let key in data[0]) barKeyArr.push(key);
+    let iColor = 0;
+    const barArr = barKeyArr.map((element, i) => {
+      if(iColor === greenColorArr.length) iColor = 0;
+      let colorBar =  greenColorArr[iColor];
+      console.log('color ', iColor, colorBar);
+      iColor++;
+      return <Bar dataKey={element} fill={colorBar} key={i} stackId="stack"/>
+    });
+
     return  <ResponsiveContainer height={1}>
               
               <BarChart
@@ -59,23 +53,17 @@ export default class ChartLine extends React.Component{
                 layout="vertical">
                   <XAxis hide type="number"/> 
                   <YAxis hide type="category"/>
-                  <Bar dataKey="pv" fill="#005D57" stackId="stack" />
-                  <Bar dataKey="uv" fill="#04B97F" stackId="stack" />
-                  <Bar dataKey="amt" fill="#37EFBA" stackId="stack" />
-                  <Bar dataKey="lm" fill="#007D51" stackId="stack" />
+                  {barArr}
                 </BarChart>
             </ResponsiveContainer>
   }
 
-  componentDidMount() {
-    this.addChart();
-  }
-
   render() {
+    const {chartData} = this.props;
     return (
-      <Inner>
+      <Inner {...this.props}>
         <Chart className="line-chart">
-          {this.addChart()}
+          {this.addChart(chartData)}
         </Chart>
       </Inner>
     )

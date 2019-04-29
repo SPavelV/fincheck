@@ -21,6 +21,9 @@ export const greenColor = `#007D51`;
 export const borderColor = lightGrayColor;
 export const bgSectionColor = secondLightGrayColor;
 
+export const greenColorArr = ['#005D57','#04B97F', '#37EFBA', '#007D51', '#33EEB8'];
+export const redColorArr = ['#FFDC78 ','#FF6951 ', '#FFD7D0', '#FFAC12', '#EB7764'];
+
 export const linkHoverColor = greenColor;
 export const linkColor = grayColor;
 

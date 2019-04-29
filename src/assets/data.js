@@ -105,4 +105,12 @@ export const income =
     }
   ]
 
+export const incomeSummBurChart = [
+  {
+    "uv": "1000",
+    "pv": "2000",
+    "amt": "3000",
+    "lm": "2000"
+  }
+];
 

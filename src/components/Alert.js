@@ -15,7 +15,6 @@ import {
   SectionTitle,
   SectionLinkTitle,
   borderColor,
-  bgSectionColor,
   linkHoverColor,
   firstFont,
   linkColor,
