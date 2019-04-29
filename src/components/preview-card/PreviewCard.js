@@ -70,7 +70,7 @@ class PreviewCard extends React.Component {
     return (
       <Inner {...this.props}>
         <SectionTitle>{this.props.sectionTitle}</SectionTitle>
-        <ChartLine chartData={dataIncomeLineChart} ></ChartLine>
+        <ChartLine chartType="costs" chartData={dataIncomeLineChart} ></ChartLine>
 
       </Inner>
     )

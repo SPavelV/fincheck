@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {BarChart, Bar, ResponsiveContainer, XAxis, YAxis} from 'recharts';
 
-import {greenColorArr} from '../../common-styles';
+import {greenColorArr,redColorArr} from '../../common-styles';
 
 const Inner = styled.section`
   position: relative;
@@ -16,32 +16,16 @@ const Chart = styled.div`
   width: 100%;
 `;
 
-export default class ChartLine extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
+export default function ChartLine ({chartData=[{value: 0}], chartType="income"}){
 
-  static defaultProps = [
-    {
-      value: 0
-    }
-  ]
-
-  static propTypes = {
-    chartData: PropTypes.arrayOf(PropTypes.object).isRequired
-  }
-
-  addChart(data) {
-    
+  const addChart = () => {
+    const colorArr = chartType === 'income' ? greenColorArr : redColorArr;
     const barKeyArr= [];
-    for(let key in data[0]) barKeyArr.push(key);
+    for(let key in chartData[0]) barKeyArr.push(key);
     let iColor = 0;
     const barArr = barKeyArr.map((element, i) => {
-      if(iColor === greenColorArr.length) iColor = 0;
-      let colorBar =  greenColorArr[iColor];
-      console.log('color ', iColor, colorBar);
+      if(iColor === colorArr.length) iColor = 0;
+      let colorBar =  colorArr[iColor];
       iColor++;
       return <Bar dataKey={element} fill={colorBar} key={i} stackId="stack"/>
     });
@@ -49,7 +33,7 @@ export default class ChartLine extends React.Component{
     return  <ResponsiveContainer height={1}>
               
               <BarChart
-                data={data} 
+                data={chartData} 
                 layout="vertical">
                   <XAxis hide type="number"/> 
                   <YAxis hide type="category"/>
@@ -58,14 +42,16 @@ export default class ChartLine extends React.Component{
             </ResponsiveContainer>
   }
 
-  render() {
-    const {chartData} = this.props;
-    return (
-      <Inner {...this.props}>
-        <Chart className="line-chart">
-          {this.addChart(chartData)}
-        </Chart>
-      </Inner>
-    )
-  }
+  return (
+    <Inner>
+      <Chart className="line-chart">
+        {addChart()}
+      </Chart>
+    </Inner>
+  )
+  
+}
+
+ChartLine.propTypes = {
+  chartData: PropTypes.arrayOf(PropTypes.object).isRequired
 }
