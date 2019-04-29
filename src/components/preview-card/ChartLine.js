@@ -8,11 +8,11 @@ import {greenColorArr,redColorArr} from '../../common-styles';
 const Inner = styled.section`
   position: relative;
   width: 100%;
-  margin-top: 10px;
+  height: 5px;
+  /* margin-bottom: 10px; */
 `;
 
 const Chart = styled.div`
-  height: 1px;
   width: 100%;
 `;
 
@@ -31,10 +31,11 @@ export default function ChartLine ({chartData=[{value: 0}], chartType="income"})
     });
 
     return  <ResponsiveContainer height={1}>
-              
+
               <BarChart
                 data={chartData} 
-                layout="vertical">
+                layout="vertical"
+                style={{top: 0}}>
                   <XAxis hide type="number"/> 
                   <YAxis hide type="category"/>
                   {barArr}
