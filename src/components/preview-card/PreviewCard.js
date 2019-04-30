@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
 import ChartLine from './ChartLine';
-import TotalSumm from './TotalSumm';
+import TotalSum from './TotalSum';
+import PreviewList from './PreviewList';
 
 import styled from 'styled-components';
 
@@ -71,8 +72,9 @@ class PreviewCard extends React.Component {
     return (
       <Inner {...this.props}>
         <SectionTitle>{this.props.sectionTitle}</SectionTitle>
-        <TotalSumm value={5000000}/>
+        <TotalSum value={5000000}/>
         <ChartLine chartType="income" chartData={dataIncomeLineChart} />
+        <PreviewList/>
 
       </Inner>
     )

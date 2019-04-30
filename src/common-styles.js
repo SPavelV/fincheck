@@ -13,11 +13,12 @@ export const firstFont = robotoFont;
 export const secondFont = eczarFont;
 
 //colors:
-export const balckColor = `rgba(0, 0, 0, 0.87)`;
+export const blackColor = `rgba(0, 0, 0, 0.87)`;
 export const grayColor =  `#7B7B7B`;
 export const lightGrayColor = `#E5E5E5`;
 export const secondLightGrayColor = `#FAFAFA;`;
 export const greenColor = `#007D51`;
+export const greenDarkColor = `#005D57`;
 export const borderColor = lightGrayColor;
 export const bgSectionColor = secondLightGrayColor;
 
@@ -64,7 +65,7 @@ export const SectionLinkTitle = styled.a`
   font-weight: 500;
   font-size: 9px;
   line-height: 19px;
-  color: ${balckColor};
+  color: ${blackColor};
   text-transform: uppercase;
   text-decoration: none;
 

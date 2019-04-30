@@ -3,27 +3,29 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import roubleIcon from '../../assets/images/icons/rouble.svg'
+import {separateValue} from '../../common-functions.js'
+import {
+  blackColor,
+  eczarFont
+} from '../../common-styles';
 
-import {balckColor,eczarFont} from '../../common-styles';
-
-const Summ = styled.section`
+const Sum = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 8px 0 0;
-  color: ${balckColor};
+  color: ${blackColor};
   font-family: ${eczarFont};
   font-size: 33px;
   line-height: 33px;
+
+  svg {
+    fill: ${blackColor};
+  }
 `;
 
-
-function separateValue(value) {
-  return ('' + value).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
-}
-
-export default function TotalSumm({value=1000000}) {
-  return <Summ>
+export default function TotalSum({value=1000000}) {
+  return <Sum>
     <ReactSVG
      evalScripts="always"
      src = {roubleIcon}
@@ -32,9 +34,9 @@ export default function TotalSumm({value=1000000}) {
      />
 
     {separateValue(value)}
-  </Summ>
+  </Sum>
 }
 
-TotalSumm.propTypes = {
+TotalSum.propTypes = {
   value: PropTypes.number.isRequired
 }

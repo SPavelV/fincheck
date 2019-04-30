@@ -8,8 +8,8 @@ import {greenColorArr,redColorArr} from '../../common-styles';
 const Inner = styled.section`
   position: relative;
   width: 100%;
-  height: 5px;
-  /* margin-bottom: 10px; */
+  height: 14px;
+  margin-bottom: 15px;
 `;
 
 const Chart = styled.div`
