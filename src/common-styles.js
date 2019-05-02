@@ -19,6 +19,7 @@ export const lightGrayColor = `#E5E5E5`;
 export const secondLightGrayColor = `#FAFAFA;`;
 export const greenColor = `#007D51`;
 export const greenDarkColor = `#005D57`;
+export const redColor = `#FF6951`;
 export const borderColor = lightGrayColor;
 export const bgSectionColor = secondLightGrayColor;
 

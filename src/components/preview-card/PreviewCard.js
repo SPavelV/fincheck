@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import ReactSVG from 'react-svg';
 import ChartLine from './ChartLine';
 import TotalSum from './TotalSum';
 import PreviewList from './PreviewList';
@@ -10,19 +9,11 @@ import styled from 'styled-components';
 
 import  {
   PageInner,
-  maxWidth,
-  gutterDesktop,
-  gutterMobile,
   mediaMinWidthDesktop,
   SectionTitle,
-  SectionLinkTitle,
-  borderColor,
-  bgSectionColor,
-  sectionShadow,
-  linkHoverColor,
-  firstFont,
-  linkColor,
-  grayColor
+  robotoFont,
+  blackColor,
+  linkHoverColor
 } from '../../common-styles';
 
 const Inner = styled(PageInner)`
@@ -33,15 +24,28 @@ const Inner = styled(PageInner)`
   }
 `;
 
+const ViewAllLink = styled.a`
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  font-family: ${robotoFont};
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: ${blackColor};
+  text-align: center;
 
-const dataIncomeLineChart = [
-  {
-    uv: 1000,
-    pv: 2000,
-    amt: 3000,
-    lm: 2000
+  @media(min-width: ${mediaMinWidthDesktop}) {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 14px;
   }
-]
+
+  &:hover{
+    color: ${linkHoverColor};
+  }
+`;
 
 
 class PreviewCard extends React.Component {
@@ -53,29 +57,33 @@ class PreviewCard extends React.Component {
   }
 
   static propTypes = {
-    data: PropTypes.array
+    sectionTitle: PropTypes.string.isRequired,
+    totalSum: PropTypes.number.isRequired
   }
 
   static defaultProps ={
-    data: [
-      {
-        id: "no data",
-        href: "no data",
-        text: "no data",
-        date: "no data"
-      }
-    ]
+    sectionTitle:'Some Title',
+    totalSum: 0
+  }
+
+  getDataToChart(data) {
+    const dataChart = {};
+    data.forEach(element => {
+      dataChart[element.name] = element.sum;
+    })
+    return [dataChart];
   }
 
   render() {
-
     return (
       <Inner {...this.props}>
         <SectionTitle>{this.props.sectionTitle}</SectionTitle>
-        <TotalSum value={5000000}/>
-        <ChartLine chartType="income" chartData={dataIncomeLineChart} />
-        <PreviewList/>
-
+        <TotalSum value={this.props.totalSum}/>
+        <ChartLine 
+        transactionType={this.props.dataItems[0].category} 
+        chartData={this.getDataToChart(this.props.dataItems)} />
+        <PreviewList dataItems={this.props.dataItems} />
+        <ViewAllLink href="#">Cмотреть все</ViewAllLink>
       </Inner>
     )
   }

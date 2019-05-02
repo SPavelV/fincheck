@@ -46,6 +46,95 @@ const HeaderLogo = styled.a`
   
 `
 
+
+const dataIncome = [
+  {
+    id: 'income1',
+    category: 'income',
+    name: 'Зарплата',
+    cardNumber: '3333444455553333',
+    sum: 1500000,
+    currency: 'rub',
+    link: '',
+    date: '2019-06-09T15:03:23.000Z'
+  },
+  {
+    id: 'income2',
+    category: 'income',
+    name: 'Фриланс',
+    cardNumber: '0000444455554444',
+    sum: 100000,
+    currency: 'rub',
+    link: '',
+    date: '2019-05-09T18:03:23.000Z'
+  },
+  {
+    id: 'income3',
+    category: 'income',
+    name: 'Кредит',
+    cardNumber: '0000444455552222',
+    sum: 200000,
+    currency: 'rub',
+    link: '',
+    date: '2019-04-02T11:03:23.000Z'
+  },
+  {
+    id: 'income4',
+    category: 'income',
+    name: 'Подарки',
+    cardNumber: '0000444455553333',
+    sum: 200000,
+    currency: 'rub',
+    link: '',
+    date: '2019-04-02T11:03:23.000Z'
+  }
+]
+
+
+const dataCosts = [
+  {
+    id: 'costs1',
+    category: 'costs',
+    name: 'Автокредит',
+    cardNumber: '3333444455553333',
+    sum: 150000,
+    currency: 'rub',
+    link: '',
+    date: '2019-06-09T15:03:23.000Z'
+  },
+  {
+    id: 'costs2',
+    category: 'costs',
+    name: 'Диван',
+    cardNumber: '0000444455554444',
+    sum: 35000,
+    currency: 'rub',
+    link: '',
+    date: '2019-05-09T18:03:23.000Z'
+  },
+  {
+    id: 'costs3',
+    category: 'costs',
+    name: 'Учеба',
+    cardNumber: '0000444455552222',
+    sum: 15000,
+    currency: 'rub',
+    link: '',
+    date: '2019-04-02T11:03:23.000Z'
+  },
+  {
+    id: 'costs4',
+    category: 'costs',
+    name: 'Бензин',
+    cardNumber: '0000444455553333',
+    sum: 2000,
+    currency: 'rub',
+    link: '',
+    date: '2019-04-02T11:03:23.000Z'
+  }
+]
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -83,7 +172,8 @@ class App extends Component {
         
         </Header>
         <Alert/>
-        <PreviewCard sectionTitle="Доходы"/>
+        <PreviewCard sectionTitle="Доходы" totalSum={5000000} dataItems={dataIncome}/>
+        <PreviewCard sectionTitle="Расходы" totalSum={200000}  dataItems={dataCosts}/>
       </AppContainer>
     );
   }
