@@ -94,23 +94,88 @@ export const alerts = [
   }
 ]
 
-
-export const income = 
-  [
-    {
-      "id": "Alert9",
-      "href": "/Alert3",
-      "text": "Заплатить штраф за превышение скорости 2017-04-02",
-      "date": "2017-04-02T11:03:23.000Z"
-    }
-  ]
-
-export const incomeSummBurChart = [
+export const income = [
   {
-    "uv": "1000",
-    "pv": "2000",
-    "amt": "3000",
-    "lm": "2000"
+    "id": "income1",
+    "category": "income",
+    "name": "Зарплата",
+    "cardNumber": "3333444455553333",
+    "sum": 1500000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-06-09T15:03:23.000Z"
+  },
+  {
+    "id": "income2",
+    "category": "income",
+    "name": "Фриланс",
+    "cardNumber": "0000444455554444",
+    "sum": 100000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-05-09T18:03:23.000Z"
+  },
+  {
+    "id": "income3",
+    "category": "income",
+    "name": "Кредит",
+    "cardNumber": "0000444455552222",
+    "sum": 200000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-04-02T11:03:23.000Z"
+  },
+  {
+    "id": "income4",
+    "category": "income",
+    "name": "Подарки",
+    "cardNumber": "0000444455553333",
+    "sum": 200000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-04-02T11:03:23.000Z"
   }
 ];
 
+export const costs = [
+  {
+    "id": "costs1",
+    "category": "costs",
+    "name": "Автокредит",
+    "cardNumber": "3333444455553333",
+    "sum": 150000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-06-09T15:03:23.000Z"
+  },
+  {
+    "id": "costs2",
+    "category": "costs",
+    "name": "Диван",
+    "cardNumber": "0000444455554444",
+    "sum": 35000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-05-09T18:03:23.000Z"
+  },
+  {
+    "id": "costs3",
+    "category": "costs",
+    "name": "Учеба",
+    "cardNumber": "0000444455552222",
+    "sum": 15000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-04-02T11:03:23.000Z"
+  },
+  {
+    "id": "costs4",
+    "category": "costs",
+    "name": "Бензин",
+    "cardNumber": "0000444455553333",
+    "sum": 2000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-04-02T11:03:23.000Z"
+  }
+]

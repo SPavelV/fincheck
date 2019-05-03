@@ -24,7 +24,11 @@ const Inner = styled.a`
 
 const Col = styled.div`
   font-family: ${robotoFont};
-
+  flex: 0 1 60%;
+  padding-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 
 `;
 
@@ -33,21 +37,31 @@ const Title = styled.div`
   font-size: 16px;
   line-height: 16px;
   margin-bottom: 2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
-const NumberCard = styled.div`
+const Note = styled.div`
   color: ${grayColor};
   font-size: 12px;
   line-height: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const Sum = styled.div`
   display: flex;
   align-items: baseline;
+  flex: 0 1 40%;
+  justify-content: flex-end;
   font-family: ${eczarFont};
   font-size: 16px;
   line-height: 16px;
   color:  ${props => props.category === 'income' ? greenColor : redColor};
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   .rouble-icon {
     display: block;
@@ -66,16 +80,26 @@ const Sum = styled.div`
   }
 `;
 
+const SumText = styled.span`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+
 export default function PreviewListItem({
     title="title", 
-    cardNumber='some card number', 
+    cardNumber='some card number',
+    note = 'some note',
     sum=0, 
     category='income'}){
+
+  const noteText = category === 'income' ? hidePartNumberCreditCard(cardNumber) : note;
+
   return (
     <Inner href="#">
       <Col>
         <Title>{title}</Title>
-        <NumberCard>{hidePartNumberCreditCard(cardNumber)}</NumberCard>
+        <Note>{noteText}</Note>
       </Col>
     
       <Sum category={category}>
@@ -85,9 +109,9 @@ export default function PreviewListItem({
           wrapper="div"
           svgClassName="rouble-icon"
         />
-        <span>
+        <SumText>
           {separateValue(sum)}
-        </span>
+        </SumText>
 
         <ReactSVG
           evalScripts="always"
@@ -104,6 +128,7 @@ export default function PreviewListItem({
 PreviewListItem.propTypes = {
   title: PropTypes.string.isRequired,
   cardNumber: PropTypes.string.isRequired,
+  note: PropTypes.string.isRequired,
   sum: PropTypes.number.isRequired,
   category: PropTypes.string.isRequired
 }

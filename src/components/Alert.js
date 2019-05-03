@@ -12,6 +12,7 @@ import {
   gutterDesktop,
   gutterMobile,
   mediaMinWidthDesktop,
+  mediaMinWidthDesktopLarge,
   SectionTitle,
   SectionLinkTitle,
   borderColor,
@@ -23,6 +24,16 @@ import {
 
 const Inner = styled(PageInner)`
   position: relative;
+  @media(min-width: ${mediaMinWidthDesktop}) {
+    flex: 0 1 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  @media(min-width: ${mediaMinWidthDesktopLarge}) {
+    flex: 0 1 32.5%;
+    max-width: 32.5%;
+  }
 `;
 
 const Header = styled.div`
@@ -39,6 +50,12 @@ const Header = styled.div`
   }
 `;
 
+const LinkTitle = styled(SectionLinkTitle)`
+  @media(min-width: ${mediaMinWidthDesktopLarge}) { 
+    display: none;
+  }
+`;
+
 const List = styled.ul`
   padding: 0 28px 0 0;
   margin: 0;
@@ -46,10 +63,15 @@ const List = styled.ul`
   max-height: 180px;
   overflow-y: auto;
 
+
   @media(min-width: ${mediaMinWidthDesktop}) {
     max-height: none;
-    overflow: auto;
   }
+
+  @media(min-width: ${mediaMinWidthDesktopLarge}) { 
+    max-height: none;
+  }
+  
 `;
 
 const ListItem = styled.li`
@@ -64,7 +86,6 @@ const ListItem = styled.li`
 
   @media(min-width: ${mediaMinWidthDesktop}) {
     max-width: none;
-    overflow: auto;
 
   }
 `;
@@ -149,17 +170,24 @@ class Alert extends React.Component {
     return (
       <Header>
         <SectionTitle>Важно</SectionTitle>
-        <SectionLinkTitle 
+        <LinkTitle 
           onClick={this.handlerClickViewAllLink} 
-          href="">Смотреть все</SectionLinkTitle>
+          href="">Смотреть все</LinkTitle>
       </Header> 
     )
+  }
+
+  getmaxQtyElements = (arrLength) => {
+    const isLargeDisplay = window.matchMedia("(min-width: 1200px)").matches;
+    
+    return this.state.isViewAllItems ? arrLength : 
+                      isLargeDisplay ? arrLength : this.state.initQtyElements;
   }
 
   getListAlert = (dataAlerts) => {
     const listItems =  dataAlerts.map( (item,i,arr) => {
 
-      let maxQtyElements = this.state.isViewAllItems ? arr.length : this.state.initQtyElements;
+      let maxQtyElements = this.getmaxQtyElements(arr.length);
   
       return <ListItem 
                 key={item.id} 

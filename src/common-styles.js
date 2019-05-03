@@ -5,6 +5,7 @@ export const maxWidth = `1360px`;
 export const gutterDesktop = `20px`;
 export const gutterMobile = `15px`;
 export const mediaMinWidthDesktop = `768px`;
+export const mediaMinWidthDesktopLarge = `1200px`;
 
 //fonts:
 export const robotoFont = `Roboto, sans-serif`;

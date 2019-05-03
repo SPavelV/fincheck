@@ -10,7 +10,13 @@ import Alert from './components/Alert';
 import PreviewCard from './components/preview-card/PreviewCard';
 
 
-import {maxWidth,gutterDesktop,gutterMobile,mediaMinWidthDesktop} from './common-styles';
+import {
+  maxWidth,
+  gutterDesktop,
+  gutterMobile,
+  mediaMinWidthDesktop,
+  mediaMinWidthDesktopLarge
+} from './common-styles';
 
 
 const Header = styled.header`
@@ -43,9 +49,38 @@ const HeaderLogo = styled.a`
     background: url(${logo}) no-repeat center;
     width: 100px;
   }
-  
 `
 
+const InnerCardsPreview = styled.div`
+   @media(min-width: ${mediaMinWidthDesktop}) {
+    display: flex;
+    flex-flow: row nowrap;
+    max-width: ${maxWidth};
+    width: 100%;
+    margin: 0 auto;
+  }
+`;
+
+const InnerAlert = styled.div`
+  max-width: ${maxWidth};
+  width: 100%;
+  margin: 0 auto;
+`;
+
+
+const InnerCards = styled.div`
+   @media(min-width: ${mediaMinWidthDesktop}) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+   }
+
+   @media(min-width: ${mediaMinWidthDesktopLarge}) {
+    justify-content: space-between;
+    max-width: ${maxWidth};
+    margin: 0 auto;
+   }
+`;
 
 const dataIncome = [
   {
@@ -56,7 +91,8 @@ const dataIncome = [
     sum: 1500000,
     currency: 'rub',
     link: '',
-    date: '2019-06-09T15:03:23.000Z'
+    date: '2019-06-09T15:03:23.000Z', 
+    note: ''
   },
   {
     id: 'income2',
@@ -66,7 +102,8 @@ const dataIncome = [
     sum: 100000,
     currency: 'rub',
     link: '',
-    date: '2019-05-09T18:03:23.000Z'
+    date: '2019-05-09T18:03:23.000Z', 
+    note: ''
   },
   {
     id: 'income3',
@@ -76,7 +113,8 @@ const dataIncome = [
     sum: 200000,
     currency: 'rub',
     link: '',
-    date: '2019-04-02T11:03:23.000Z'
+    date: '2019-04-02T11:03:23.000Z', 
+    note: ''
   },
   {
     id: 'income4',
@@ -86,10 +124,10 @@ const dataIncome = [
     sum: 200000,
     currency: 'rub',
     link: '',
-    date: '2019-04-02T11:03:23.000Z'
+    date: '2019-04-02T11:03:23.000Z', 
+    note: ''
   }
 ]
-
 
 const dataCosts = [
   {
@@ -100,7 +138,8 @@ const dataCosts = [
     sum: 150000,
     currency: 'rub',
     link: '',
-    date: '2019-06-09T15:03:23.000Z'
+    date: '2019-06-09T15:03:23.000Z', 
+    note: 'Договор №123455678000'
   },
   {
     id: 'costs2',
@@ -110,7 +149,8 @@ const dataCosts = [
     sum: 35000,
     currency: 'rub',
     link: '',
-    date: '2019-05-09T18:03:23.000Z'
+    date: '2019-05-09T18:03:23.000Z', 
+    note: 'Договор №123455678000'
   },
   {
     id: 'costs3',
@@ -120,7 +160,8 @@ const dataCosts = [
     sum: 15000,
     currency: 'rub',
     link: '',
-    date: '2019-04-02T11:03:23.000Z'
+    date: '2019-04-02T11:03:23.000Z', 
+    note: 'Договор №123455678000'
   },
   {
     id: 'costs4',
@@ -130,10 +171,10 @@ const dataCosts = [
     sum: 2000,
     currency: 'rub',
     link: '',
-    date: '2019-04-02T11:03:23.000Z'
+    date: '2019-04-02T11:03:23.000Z', 
+    note: 'Договор №123455678000'
   }
 ]
-
 
 class App extends Component {
   constructor(props) {
@@ -169,11 +210,36 @@ class App extends Component {
         <Header className="app__header">
             <HeaderLogo href="/" className="app__logo"/>
           <MainNav />
-        
         </Header>
-        <Alert/>
-        <PreviewCard sectionTitle="Доходы" totalSum={5000000} dataItems={dataIncome}/>
-        <PreviewCard sectionTitle="Расходы" totalSum={200000}  dataItems={dataCosts}/>
+        
+        {/* <InnerAlert>
+          <Alert/>
+        </InnerAlert> */}
+        
+        {/* <InnerCardsPreview>
+          <Alert/>
+          <PreviewCard 
+            sectionTitle="Доходы" 
+            totalSum={5000000}
+            dataItems={dataIncome}/>
+          <PreviewCard 
+            sectionTitle="Расходы"
+            totalSum={200000}
+            dataItems={dataCosts}/>
+        </InnerCardsPreview> */}
+
+         
+        <InnerCards>
+          <Alert/>
+          <PreviewCard 
+            sectionTitle="Доходы" 
+            totalSum={5000000}
+            dataItems={dataIncome}/>
+          <PreviewCard 
+            sectionTitle="Расходы"
+            totalSum={200000}
+            dataItems={dataCosts}/>
+        </InnerCards>
       </AppContainer>
     );
   }

@@ -63,6 +63,7 @@ export default function PreviewList({dataItems = defaultProps}){
                   cardNumber={element.cardNumber}
                   sum={element.sum}
                   category={element.category}
+                  note={element.note}
                 />
               </Item>
     });

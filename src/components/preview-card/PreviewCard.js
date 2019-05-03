@@ -13,7 +13,8 @@ import  {
   SectionTitle,
   robotoFont,
   blackColor,
-  linkHoverColor
+  linkHoverColor,
+  mediaMinWidthDesktopLarge
 } from '../../common-styles';
 
 const Inner = styled(PageInner)`
@@ -21,7 +22,28 @@ const Inner = styled(PageInner)`
 
   @media(min-width: ${mediaMinWidthDesktop}) {
     margin-top: 10px;
+    flex: 0 1 49.5%;
+    max-width: 49.5%;
   }
+
+  @media(min-width: ${mediaMinWidthDesktopLarge}) {
+    flex: 0 1 32.5%;
+    max-width: 32.5%;
+    margin-top: 0;
+  }
+
+  & + & {
+    @media(min-width: ${mediaMinWidthDesktop}) {
+      margin-left: 1%;
+    }
+
+    @media(min-width: ${mediaMinWidthDesktopLarge}) {
+      margin: 0;
+    }
+    
+  }
+
+
 `;
 
 const ViewAllLink = styled.a`
