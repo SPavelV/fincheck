@@ -94,7 +94,7 @@ export const alerts = [
   }
 ]
 
-export const income = [
+export const transactions = [
   {
     "id": "income1",
     "category": "income",
@@ -103,7 +103,8 @@ export const income = [
     "sum": 1500000,
     "currency": "rub",
     "link": "",
-    "date": "2019-06-09T15:03:23.000Z"
+    "date": "2019-06-09T15:03:23.000Z",
+    "note": ""
   },
   {
     "id": "income2",
@@ -113,17 +114,19 @@ export const income = [
     "sum": 100000,
     "currency": "rub",
     "link": "",
-    "date": "2019-05-09T18:03:23.000Z"
+    "date": "2019-05-09T18:03:23.000Z", 
+    "note": ""
   },
   {
     "id": "income3",
     "category": "income",
     "name": "Кредит",
-    "cardNumber": "0000444455552222",
+    "cardNumber": "",
     "sum": 200000,
     "currency": "rub",
     "link": "",
-    "date": "2019-04-02T11:03:23.000Z"
+    "date": "2019-04-02T11:03:23.000Z", 
+    "note": ""
   },
   {
     "id": "income4",
@@ -133,11 +136,9 @@ export const income = [
     "sum": 200000,
     "currency": "rub",
     "link": "",
-    "date": "2019-04-02T11:03:23.000Z"
-  }
-];
-
-export const costs = [
+    "date": "2019-04-02T11:03:23.000Z", 
+    "note": ""
+  },
   {
     "id": "costs1",
     "category": "costs",
@@ -146,7 +147,8 @@ export const costs = [
     "sum": 150000,
     "currency": "rub",
     "link": "",
-    "date": "2019-06-09T15:03:23.000Z"
+    "date": "2019-06-09T15:03:23.000Z", 
+    "note": "Договор №123455678000"
   },
   {
     "id": "costs2",
@@ -156,7 +158,8 @@ export const costs = [
     "sum": 35000,
     "currency": "rub",
     "link": "",
-    "date": "2019-05-09T18:03:23.000Z"
+    "date": "2019-05-09T18:03:23.000Z", 
+    "note": "В расскрочку"
   },
   {
     "id": "costs3",
@@ -166,7 +169,8 @@ export const costs = [
     "sum": 15000,
     "currency": "rub",
     "link": "",
-    "date": "2019-04-02T11:03:23.000Z"
+    "date": "2019-04-02T11:03:23.000Z", 
+    "note": ""
   },
   {
     "id": "costs4",
@@ -176,6 +180,8 @@ export const costs = [
     "sum": 2000,
     "currency": "rub",
     "link": "",
-    "date": "2019-04-02T11:03:23.000Z"
+    "date": "2019-04-02T11:03:23.000Z", 
+    "note": "10 литров"
   }
-]
+];
+

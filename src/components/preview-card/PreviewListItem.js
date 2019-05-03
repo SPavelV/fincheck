@@ -20,6 +20,7 @@ const Inner = styled.a`
   justify-content: space-between;
   align-items: flex-start; 
   text-decoration: none;
+  min-height: 35px;
 `;
 
 const Col = styled.div`

@@ -5,7 +5,10 @@ import {
   TOGGLE_INPUT_EDIT,
   ADD_ALERT_ITEM,
   DEL_ALERT_ITEM,
-  SORT_DATES_ALERTS_ITEM
+  SORT_DATES_ALERTS_ITEM,
+  ADD_TRANSACTION,
+  REMOVE_TRANSACTION,
+  EDITING_TRANSACTION
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -54,5 +57,23 @@ export function sortDateAlertsItem(isSorting) {
   return {
     type: SORT_DATES_ALERTS_ITEM,
     payload: { isSorting }
+  }
+}
+
+export function addTransaction() {
+  return {
+    type: ADD_TRANSACTION
+  }
+}
+
+export function removeTransaction() {
+  return {
+    type: REMOVE_TRANSACTION
+  }
+}
+
+export function editignTransaction() {
+  return {
+    type: EDITING_TRANSACTION
   }
 }
