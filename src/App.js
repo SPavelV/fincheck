@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {addTransaction} from './actions';
+import {BrowserRouter as Router, Route,Link} from 'react-router-dom';
 import styled from 'styled-components';
 import './assets/fonts/Eczar/stylesheet.css';
 import './assets/fonts/Roboto/stylesheet.css';
 import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
-import Alert from './components/Alert';
-import PreviewCard from './components/preview-card/PreviewCard';
+
+
+import Home from './pages/Home.js';
+import Income from './pages/Income.js';
+import Costs from './pages/Costs.js';
 
 import {
   maxWidth,
@@ -38,7 +40,7 @@ const AppContainer = styled.div`
   }
 `
 
-const HeaderLogo = styled.a`
+const HeaderLogo = styled.div`
   display: flex;
   background: url(${logoSmall}) no-repeat center;
   width: 19px;
@@ -49,20 +51,6 @@ const HeaderLogo = styled.a`
     width: 100px;
   }
 `
-
-const InnerCards = styled.div`
-   @media(min-width: ${mediaMinWidthDesktop}) {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-   }
-
-   @media(min-width: ${mediaMinWidthDesktopLarge}) {
-    justify-content: space-between;
-    max-width: ${maxWidth};
-    margin: 0 auto;
-   }
-`;
 
 class App extends Component {
   constructor(props) {
@@ -85,9 +73,6 @@ class App extends Component {
     }));
   }
 
-  getIncomData(data, typeTransaction) {
-    return data.filter(element=> element.category === typeTransaction);
-  }
 
   render() {
     if(this.state.error) {
@@ -98,37 +83,26 @@ class App extends Component {
       );
     }
 
-    const {dataTransaction} = this.props;
-    const dataIncome = this.getIncomData(dataTransaction, 'income');
-    const dataCosts = this.getIncomData(dataTransaction, 'costs');
-
     return (
       <AppContainer className="app">
-        <Header className="app__header">
-            <HeaderLogo href="/" className="app__logo"/>
-          <MainNav />
-        </Header>
-         
-        <InnerCards>
-          <Alert/>
-          <PreviewCard 
-            sectionTitle="Доходы" 
-            totalSum={5000000}
-            dataItems={dataIncome}/>
-          <PreviewCard 
-            sectionTitle="Расходы"
-            totalSum={200000}
-            dataItems={dataCosts}/>
-        </InnerCards>
+        <Router>
+          <Header className="app__header">
+              <Link to = "/">
+                <HeaderLogo href="/" className="app__logo"/>
+              </Link>
+            <MainNav />
+          </Header>
+          
+          <Route path="/">
+            <Route path="/" component={Home}/>
+            <Route path="/income" component={Income}/>
+            <Route path="/costs" component={Costs}/>
+          </Route> 
+        </Router>
+        
       </AppContainer>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  dataTransaction: state.transactions
-})
-
-const mapDispatchToProps = {addTransaction}
-
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default App;

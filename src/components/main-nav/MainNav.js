@@ -11,7 +11,6 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
-
 class MainNav extends Component {
   state = {
     activeLinkId: null,
@@ -46,7 +45,6 @@ class MainNav extends Component {
   }
 
   handleClickLink = (evt,activeLinkId) => {
-    evt.preventDefault();
     this.setState( { activeLinkId } );
   };
 

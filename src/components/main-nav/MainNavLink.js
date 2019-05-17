@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import EditingLinkMainNav from '../admin/EditingLinkMainNav'
-
+import {Link} from 'react-router-dom';
 
 import bag from '../../assets/images/icons/bag.svg';
 import chart from '../../assets/images/icons/chart.svg';
@@ -11,7 +11,7 @@ import minus from '../../assets/images/icons/minus.svg';
 import params from '../../assets/images/icons/params.svg';
 import plus from '../../assets/images/icons/plus.svg';
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   position:relative;
   display: flex;
   align-items: center;
@@ -92,12 +92,12 @@ class MainNavLink extends Component{
     const {isActive,href, iconSrc,text,isAdmin,isEditInputActive} = this.props;
     return (
       <NavLink 
-        {...this.props}
+        // {...this.props}
+        to={href}
         className="main-nav__link" 
-        href={href} 
-        title={text} 
         onClick={this.props.toggleLink} 
-        isActive={isActive}>
+        isActive={isActive}
+        >
           <ReactSVG 
           evalScripts="always"
           src = {this.getSvgIcon(iconSrc)}
@@ -115,6 +115,7 @@ class MainNavLink extends Component{
           
         {text}
       </NavLink>
+  
     )
   }
 } 
