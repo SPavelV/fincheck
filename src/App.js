@@ -93,11 +93,16 @@ class App extends Component {
             <MainNav />
           </Header>
           
-          <Route path="/">
-            <Route path="/" component={Home}/>
-            <Route path="/income" component={Income}/>
-            <Route path="/costs" component={Costs}/>
-          </Route> 
+ 
+          <Route path="/" component={Home} exact/>
+          <Route path="/income" component={Income} exact/>
+          {/* <Route path="/income/:id" 
+                 render={({match, location, history}) => {
+                  const { id } = match.params; 
+                  return <IcomeDetails itemId = id/>
+                 }}/> */}
+          <Route path="/costs" component={Costs} exact/>
+
         </Router>
         
       </AppContainer>
