@@ -4,6 +4,7 @@ import {addTransaction} from '../actions';
 import Alert from '../components/Alert';
 import PreviewCard from '../components/preview-card/PreviewCard';
 import styled from 'styled-components';
+import {getTransactionData} from '../common-functions';
 
 
 import {
@@ -36,29 +37,24 @@ export class Home extends Component {
         }
     }
 
-    
-  getIncomData(data, typeTransaction) {
-    return data.filter(element=> element.category === typeTransaction);
-  }
-
     render() {
 
         const {dataTransaction} = this.props;
-        const dataIncome = this.getIncomData(dataTransaction, 'income');
-        const dataCosts = this.getIncomData(dataTransaction, 'costs');
+        const dataIncome = getTransactionData(dataTransaction, 'income');
+        const dataCosts = getTransactionData(dataTransaction, 'costs');
 
         return (
              <InnerCards>
-            <Alert/>
-            <PreviewCard 
-              sectionTitle="Доходы" 
-              totalSum={5000000}
-              dataItems={dataIncome}/>
-            <PreviewCard 
-              sectionTitle="Расходы"
-              totalSum={200000}
-              dataItems={dataCosts}/>
-          </InnerCards> 
+              <Alert/>
+              <PreviewCard 
+                sectionTitle="Доходы" 
+                totalSum={5000000}
+                dataItems={dataIncome}/>
+              <PreviewCard 
+                sectionTitle="Расходы"
+                totalSum={200000}
+                dataItems={dataCosts}/>
+            </InnerCards> 
         )
     }
 }

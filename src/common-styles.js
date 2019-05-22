@@ -45,7 +45,18 @@ export const PageInner = styled.section`
   @media(min-width: ${mediaMinWidthDesktop}) {
     padding: ${gutterDesktop};
   }
+`;
 
+export const SectionInnerTransparent = styled.div`
+  padding: ${gutterMobile};
+  max-width: ${maxWidth};
+  width: 100%;
+  margin: 0 auto;
+  font-family: ${robotoFont};
+
+  @media(min-width: ${mediaMinWidthDesktop}) {
+    padding: ${gutterDesktop};
+  }
 `;
 
 //styled components:

@@ -20,3 +20,7 @@ export function getCurrentColor(transactionType='income') {
 
   return getColor;
 }
+
+export function getTransactionData(data, typeTransaction) {
+  return data.filter(element=> element.category === typeTransaction);
+}

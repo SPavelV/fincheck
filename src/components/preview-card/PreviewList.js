@@ -51,13 +51,14 @@ const defaultProps = [
   }
 ]
 
-export default function PreviewList({dataItems = defaultProps}){
-
+export default function PreviewList({dataItems = defaultProps, maxItems = dataItems.length}){
+  console.log('dataItems.len:',dataItems.length )
   const getItems = () => {
 
     const getColor = getCurrentColor(dataItems[0].category);
-    return dataItems.map(element => {
-      return  <Item key={element.id} markerColor={getColor()}>
+    return dataItems.map((element,i) => {
+      if(i < maxItems) {
+        return  <Item key={element.id} markerColor={getColor()}>
                 <PreviewListItem 
                   title={element.name}
                   cardNumber={element.cardNumber}
@@ -66,6 +67,8 @@ export default function PreviewList({dataItems = defaultProps}){
                   note={element.note}
                 />
               </Item>
+      }
+      
     });
   };
 

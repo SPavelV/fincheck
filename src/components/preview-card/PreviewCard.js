@@ -104,7 +104,7 @@ class PreviewCard extends React.Component {
         <ChartLine 
         transactionType={this.props.dataItems[0].category} 
         chartData={this.getDataToChart(this.props.dataItems)} />
-        <PreviewList dataItems={this.props.dataItems} />
+        <PreviewList dataItems={this.props.dataItems} maxItems={4} />
         <ViewAllLink href="#">Cмотреть все</ViewAllLink>
       </Inner>
     )

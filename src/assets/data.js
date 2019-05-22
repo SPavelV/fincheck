@@ -140,6 +140,50 @@ export const transactions = [
     "note": ""
   },
   {
+    "id": "income5",
+    "category": "income",
+    "name": "Зарплата",
+    "cardNumber": "3333444455553333",
+    "sum": 1500000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-03-09T15:03:23.000Z",
+    "note": ""
+  },
+  {
+    "id": "income6",
+    "category": "income",
+    "name": "Фриланс",
+    "cardNumber": "0000444455554444",
+    "sum": 100000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-02-09T18:03:23.000Z", 
+    "note": ""
+  },
+  {
+    "id": "income7",
+    "category": "income",
+    "name": "Кредит",
+    "cardNumber": "",
+    "sum": 200000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-01-02T11:03:23.000Z", 
+    "note": ""
+  },
+  {
+    "id": "income8",
+    "category": "income",
+    "name": "Подарки",
+    "cardNumber": "0000444455553333",
+    "sum": 200000,
+    "currency": "rub",
+    "link": "",
+    "date": "2018-12-02T11:03:23.000Z", 
+    "note": ""
+  },
+  {
     "id": "costs1",
     "category": "costs",
     "name": "Автокредит",
