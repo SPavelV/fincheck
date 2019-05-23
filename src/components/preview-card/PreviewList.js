@@ -52,7 +52,6 @@ const defaultProps = [
 ]
 
 export default function PreviewList({dataItems = defaultProps, maxItems = dataItems.length}){
-  console.log('dataItems.len:',dataItems.length )
   const getItems = () => {
 
     const getColor = getCurrentColor(dataItems[0].category);

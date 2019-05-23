@@ -7,7 +7,6 @@ import './assets/fonts/Roboto/stylesheet.css';
 import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
-import AddTransaction from './components/AddTransaction';
 
 
 import Home from './pages/Home.js';
@@ -36,6 +35,7 @@ const Header = styled.header`
 `;
 
 const AppContainer = styled.div`
+  padding-bottom: 75px;
   * {
     box-sizing: border-box;
   }
@@ -94,8 +94,7 @@ class App extends Component {
             <MainNav />
           </Header>
 
-          <AddTransaction/>
- 
+         
           <Route path="/" component={Home} exact/>
           <Route path="/income" component={Income} exact/>
           {/* <Route path="/income/:id" 

@@ -24,3 +24,29 @@ export function getCurrentColor(transactionType='income') {
 export function getTransactionData(data, typeTransaction) {
   return data.filter(element=> element.category === typeTransaction);
 }
+
+export function getDataToChart(data, maxItems = data.length,typeChart = 'line') {
+
+  if(typeChart === 'line') {
+    const dataChart = {};
+    data.forEach((element, i) => {
+      if(i < maxItems) {
+        dataChart[element.name + i] = element.sum;
+      }
+    })
+    return [dataChart];
+  }
+
+  if(typeChart === 'pie') {
+    
+    return data.map((element, i) => {
+      if(i < maxItems) {
+        const {name, sum: value} = element;
+        return {name,value};
+      }
+    })
+
+  }
+
+  
+}

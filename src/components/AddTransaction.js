@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+
 import {
   robotoFont,
   bgSectionColor,
-  blackColor
+  blackColor,
+  mediaMinWidthDesktop
 } from '../common-styles';
 
 const Inner = styled.section`
@@ -19,9 +21,15 @@ const Inner = styled.section`
   justify-content: center;
   align-items: center;
   height: 70px;
-  background-color: ${bgSectionColor};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 0px 4px 10px rgba(0, 0, 0, 0.25);
+  /* background-color: ${bgSectionColor};
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 0px 4px 10px rgba(0, 0, 0, 0.25); */
+  background-color: transparent;
   font-family: ${robotoFont};
+
+  @media(min-width: ${mediaMinWidthDesktop}) {
+    position: static;
+    margin-top: 30px;
+  }
 `;
 
 const ButtonAdd = styled.button`
@@ -41,6 +49,7 @@ const ButtonAdd = styled.button`
   border-radius: 22.5px;
   text-transform: uppercase;
   border: 0;
+  background-color: ${bgSectionColor};
 `;
 
 class AddTransaction extends React.Component {

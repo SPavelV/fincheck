@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {getTransactionData} from '../common-functions'
-import PreviewList from '../components/preview-card/PreviewList'
+import {getTransactionData, getDataToChart} from '../common-functions';
+import PieChart from '../components/PieChart';
+import PreviewList from '../components/preview-card/PreviewList';
+
 
 import {
     PageInner,
@@ -12,11 +14,12 @@ import {
 } from '../common-styles';
 
 const Inner = styled(PageInner)`
-
+    
 `;
 
-const CircleChart = styled.section`
+const ChartInner = styled.section`
     display: block;
+    margin-bottom: 20px;
 `;
 
 export class Income extends Component {
@@ -31,10 +34,15 @@ export class Income extends Component {
 
         const {dataTransaction} = this.props;
         const dataIncome = getTransactionData(dataTransaction, 'income');
-
+        
         return(
             <SectionInnerTransparent>
-                <CircleChart>Circle Chart</CircleChart>
+                <ChartInner>
+                    <PieChart
+                        transactionType={dataIncome[0].category}
+                        chartData={getDataToChart(dataIncome, undefined, 'pie')}
+                    />
+                </ChartInner>
                 <Inner>
                     <PreviewList dataItems={dataIncome} />
                 </Inner>

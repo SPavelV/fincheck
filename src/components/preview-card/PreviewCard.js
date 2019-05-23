@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ChartLine from './ChartLine';
 import TotalSum from './TotalSum';
 import PreviewList from './PreviewList';
+import {getDataToChart} from '../../common-functions';
 
 import styled from 'styled-components';
 
@@ -88,14 +89,6 @@ class PreviewCard extends React.Component {
     totalSum: 0
   }
 
-  getDataToChart(data) {
-    const dataChart = {};
-    data.forEach(element => {
-      dataChart[element.name] = element.sum;
-    })
-    return [dataChart];
-  }
-
   render() {
     return (
       <Inner {...this.props}>
@@ -103,7 +96,7 @@ class PreviewCard extends React.Component {
         <TotalSum value={this.props.totalSum}/>
         <ChartLine 
         transactionType={this.props.dataItems[0].category} 
-        chartData={this.getDataToChart(this.props.dataItems)} />
+        chartData={getDataToChart(this.props.dataItems, 4)} />
         <PreviewList dataItems={this.props.dataItems} maxItems={4} />
         <ViewAllLink href="#">Cмотреть все</ViewAllLink>
       </Inner>

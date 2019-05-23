@@ -5,6 +5,8 @@ import Alert from '../components/Alert';
 import PreviewCard from '../components/preview-card/PreviewCard';
 import styled from 'styled-components';
 import {getTransactionData} from '../common-functions';
+import AddTransaction from '../components/AddTransaction';
+
 
 
 import {
@@ -50,10 +52,14 @@ export class Home extends Component {
                 sectionTitle="Доходы" 
                 totalSum={5000000}
                 dataItems={dataIncome}/>
+              
               <PreviewCard 
                 sectionTitle="Расходы"
                 totalSum={200000}
                 dataItems={dataCosts}/>
+              
+              <AddTransaction/>
+ 
             </InnerCards> 
         )
     }
