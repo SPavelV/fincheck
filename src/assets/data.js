@@ -226,6 +226,50 @@ export const transactions = [
     "link": "",
     "date": "2019-04-02T11:03:23.000Z", 
     "note": "10 литров"
+  },
+  {
+    "id": "costs5",
+    "category": "costs",
+    "name": "Автокредит",
+    "cardNumber": "3333444455553333",
+    "sum": 150000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-03-09T15:03:23.000Z", 
+    "note": "Договор №123455678000"
+  },
+  {
+    "id": "costs6",
+    "category": "costs",
+    "name": "Диван",
+    "cardNumber": "0000444455554444",
+    "sum": 35000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-02-09T18:03:23.000Z", 
+    "note": "В расскрочку"
+  },
+  {
+    "id": "costs7",
+    "category": "costs",
+    "name": "Учеба",
+    "cardNumber": "0000444455552222",
+    "sum": 15000,
+    "currency": "rub",
+    "link": "",
+    "date": "2019-01-02T11:03:23.000Z", 
+    "note": ""
+  },
+  {
+    "id": "costs8",
+    "category": "costs",
+    "name": "Бензин",
+    "cardNumber": "0000444455553333",
+    "sum": 2000,
+    "currency": "rub",
+    "link": "",
+    "date": "2018-12-02T11:03:23.000Z", 
+    "note": "10 литров"
   }
 ];
 

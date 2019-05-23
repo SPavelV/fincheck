@@ -7,6 +7,7 @@ import './assets/fonts/Roboto/stylesheet.css';
 import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
+import AddTransaction from './components/AddTransaction';
 
 
 import Home from './pages/Home.js';
@@ -92,7 +93,8 @@ class App extends Component {
               </Link>
             <MainNav />
           </Header>
-          
+
+          <AddTransaction/>
  
           <Route path="/" component={Home} exact/>
           <Route path="/income" component={Income} exact/>

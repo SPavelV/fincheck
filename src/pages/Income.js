@@ -36,7 +36,6 @@ export class Income extends Component {
             <SectionInnerTransparent>
                 <CircleChart>Circle Chart</CircleChart>
                 <Inner>
-                    <div className="income">Доходы</div>
                     <PreviewList dataItems={dataIncome} />
                 </Inner>
             </SectionInnerTransparent>
