@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {getTransactionData, getDataToChart} from '../common-functions';
+import {getTransactionData,sortByDate} from '../common-functions';
 import PieChart from '../components/PieChart';
 import PreviewList from '../components/preview-card/PreviewList';
 
@@ -39,12 +39,12 @@ export class Income extends Component {
             <SectionInnerTransparent>
                 <ChartInner>
                     <PieChart
-                        transactionType={dataIncome[0].category}
-                        chartData={getDataToChart(dataIncome, undefined, 'pie')}
+                        transactionType={'income'}
+                        chartData={dataIncome}
                     />
                 </ChartInner>
                 <Inner>
-                    <PreviewList dataItems={dataIncome} />
+                    <PreviewList dataItems={sortByDate(dataIncome)} />
                 </Inner>
             </SectionInnerTransparent>
         )

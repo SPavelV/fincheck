@@ -47,6 +47,29 @@ export function getDataToChart(data, maxItems = data.length,typeChart = 'line') 
     })
 
   }
-
   
+}
+
+export function sortByDate(data){
+  if(!Array.isArray(data)) {
+    console.log('---data is not array')
+    return;
+  };
+  
+  return [...data.sort((el1, el2) => {
+    const date1 = new Date(el1["date"]);
+    const date2 = new Date(el2["date"]);
+    return date2 - date1;
+  })];
+};
+
+export function sortBySum(data) {
+  if(!Array.isArray(data)) {
+    console.log('---data is not array')
+    return;
+  };
+
+  return [...data.sort((el1, el2) => {
+    return el1['sum'] - el2['sum'];
+  })];
 }
