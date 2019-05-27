@@ -73,3 +73,9 @@ export function sortBySum(data) {
     return el1['sum'] - el2['sum'];
   })];
 }
+
+export function getArrValues(arr, propName) {
+
+  const newArr =  arr.map(item => item[propName]);
+  return newArr;
+}

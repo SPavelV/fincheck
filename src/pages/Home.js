@@ -11,8 +11,6 @@ import AddTransaction from '../components/AddTransaction';
 
 import {
     maxWidth,
-    gutterDesktop,
-    gutterMobile,
     mediaMinWidthDesktop,
     mediaMinWidthDesktopLarge
   } from '../common-styles';

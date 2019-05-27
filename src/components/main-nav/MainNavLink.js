@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import EditingLinkMainNav from '../admin/EditingLinkMainNav'
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import bag from '../../assets/images/icons/bag.svg';
 import chart from '../../assets/images/icons/chart.svg';
@@ -11,7 +11,7 @@ import minus from '../../assets/images/icons/minus.svg';
 import params from '../../assets/images/icons/params.svg';
 import plus from '../../assets/images/icons/plus.svg';
 
-const NavLink = styled(Link)`
+const LinkNavigation = styled(NavLink)`
   position:relative;
   display: flex;
   align-items: center;
@@ -19,8 +19,7 @@ const NavLink = styled(Link)`
   font-family: 'Roboto';
   font-weight: normal;
   text-decoration: none;
-  color: ${props => props.isActive ? '#007D51' : '#000000'};
-
+  
   &:hover {
     color: #007D51;
     
@@ -44,8 +43,12 @@ const NavLink = styled(Link)`
 
   svg {
       margin-right: 10px;
-      fill: ${props => props.isActive ? '#007D51' : '#7B7B7B'};
-    }
+      fill: #7B7B7B;
+  }
+
+  &.active svg{
+    fill: #007D51;
+  }
 
   & + & {
     margin-left: 0;
@@ -89,19 +92,18 @@ class MainNavLink extends Component{
   }
 
   render() {
-    const {isActive,href, iconSrc,text,isAdmin,isEditInputActive} = this.props;
+    const {href, iconSrc,text,isAdmin,isEditInputActive} = this.props;
     return (
-      <NavLink 
-        // {...this.props}
+      <LinkNavigation 
         to={href}
-        className="main-nav__link" 
         onClick={this.props.toggleLink} 
-        isActive={isActive}
+        activeStyle={{color: '#007D51'}}
+        activeClassName='active'
+        // isActive={()=> console.log('click')}
         >
           <ReactSVG 
           evalScripts="always"
           src = {this.getSvgIcon(iconSrc)}
-          svgClassName="main-nav__icon"
           svgStyle={{ width: 15 }}
           wrapper="span"
           />
@@ -114,7 +116,7 @@ class MainNavLink extends Component{
           }
           
         {text}
-      </NavLink>
+      </LinkNavigation>
   
     )
   }

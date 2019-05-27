@@ -17,8 +17,7 @@ import {
   maxWidth,
   gutterDesktop,
   gutterMobile,
-  mediaMinWidthDesktop,
-  mediaMinWidthDesktopLarge
+  mediaMinWidthDesktop
 } from './common-styles';
 
 const Header = styled.header`

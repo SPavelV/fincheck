@@ -5,21 +5,47 @@ import styled from 'styled-components';
 import {getTransactionData,sortByDate} from '../common-functions';
 import PieChart from '../components/PieChart';
 import PreviewList from '../components/preview-card/PreviewList';
+import TotalSum from '../components/TotalSum';
 
 
 import {
     PageInner,
-    SectionInnerTransparent
+    SectionInnerTransparent,
+    mediaMinWidthDesktop
 
 } from '../common-styles';
 
-const Inner = styled(PageInner)`
-    
+const Inner = styled(SectionInnerTransparent)`
+     @media(min-width: ${mediaMinWidthDesktop}) {
+         display: flex;
+         flex-flow: row nowrap;
+         align-items: center;
+         justify-content: space-between;
+     }
+`;
+
+const InnerTransactionList = styled(PageInner)`
+      @media(min-width: ${mediaMinWidthDesktop}) {
+       flex: 0 1 50%;
+    }
 `;
 
 const ChartInner = styled.section`
+    position: relative;
     display: block;
     margin-bottom: 20px;
+
+    @media(min-width: ${mediaMinWidthDesktop}) {
+        flex: 0 1 50%;
+        margin-bottom: 0;
+    }
+`;
+
+const TotulSumInner = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 `;
 
 export class Income extends Component {
@@ -34,19 +60,23 @@ export class Income extends Component {
 
         const {dataTransaction} = this.props;
         const dataIncome = getTransactionData(dataTransaction, 'income');
+
         
         return(
-            <SectionInnerTransparent>
+            <Inner>
                 <ChartInner>
                     <PieChart
                         transactionType={'income'}
                         chartData={dataIncome}
                     />
+                    <TotulSumInner>
+                        <TotalSum valuesArr={dataIncome}/>
+                    </TotulSumInner>
                 </ChartInner>
-                <Inner>
+                <InnerTransactionList>
                     <PreviewList dataItems={sortByDate(dataIncome)} />
-                </Inner>
-            </SectionInnerTransparent>
+                </InnerTransactionList>
+            </Inner>
         )
     }
 }

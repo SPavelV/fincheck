@@ -7,8 +7,7 @@ import {
 
 export default (transactionsState = transactions, action) => {
   const {
-    type,
-    payload
+    type
   } = action;
 
   switch(type) {
