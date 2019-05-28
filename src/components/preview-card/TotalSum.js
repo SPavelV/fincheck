@@ -38,5 +38,5 @@ export default function TotalSum({value=1000000}) {
 }
 
 TotalSum.propTypes = {
-  value: PropTypes.number.isRequired
+  value: PropTypes.string.isRequired
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ChartLine from './ChartLine';
 import TotalSum from './TotalSum';
 import PreviewList from './PreviewList';
-import {getDataToChart} from '../../common-functions';
+import {getDataToChart,separateValue,getArrValues,getSum} from '../../common-functions';
 
 import styled from 'styled-components';
 
@@ -71,37 +71,22 @@ const ViewAllLink = styled.a`
 `;
 
 
-class PreviewCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-    }
-  }
+export default function PreviewCard ({dataItems = [0], sectionTitle='Some Title'}){
 
-  static propTypes = {
-    sectionTitle: PropTypes.string.isRequired,
-    totalSum: PropTypes.number.isRequired
-  }
 
-  static defaultProps ={
-    sectionTitle:'Some Title',
-    totalSum: 0
-  }
-
-  render() {
-    return (
-      <Inner {...this.props}>
-        <SectionTitle>{this.props.sectionTitle}</SectionTitle>
-        <TotalSum value={this.props.totalSum}/>
-        <ChartLine 
-        transactionType={this.props.dataItems[0].category} 
-        chartData={getDataToChart(this.props.dataItems, 4)} />
-        <PreviewList dataItems={this.props.dataItems} maxItems={4} />
-        <ViewAllLink href="#">Cмотреть все</ViewAllLink>
-      </Inner>
-    )
-  }
+  return (
+    <Inner>
+      <SectionTitle>{sectionTitle}</SectionTitle>
+      <TotalSum value={ getSum(getArrValues(dataItems,'sum'), separateValue)}/>
+      <ChartLine 
+      transactionType={dataItems[0].category} 
+      chartData={getDataToChart(dataItems, 4)} />
+      <PreviewList dataItems={dataItems} maxItems={4} />
+      <ViewAllLink href="#">Cмотреть все</ViewAllLink>
+    </Inner>
+  )
 }
 
-export default PreviewCard;
+PreviewCard.propTypes = {
+  sectionTitle: PropTypes.string.isRequired
+}

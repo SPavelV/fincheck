@@ -25,6 +25,10 @@ export function getTransactionData(data, typeTransaction) {
   return data.filter(element=> element.category === typeTransaction);
 }
 
+export function getRightAmountData(data, amount = 10, startIndex = 0){
+  return data.filter((element, i) => i >= startIndex && i < amount + startIndex );
+}
+
 export function getDataToChart(data, maxItems = data.length,typeChart = 'line') {
 
   if(typeChart === 'line') {
@@ -75,7 +79,21 @@ export function sortBySum(data) {
 }
 
 export function getArrValues(arr, propName) {
-
-  const newArr =  arr.map(item => item[propName]);
-  return newArr;
+  return  arr.map(item => item[propName]);
 }
+
+export function getSum(arr, callback) {
+  if(!Array.isArray(arr)) {
+    console.log('---data is not array')
+    return;
+  }
+
+  const sum = arr.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  })
+
+  if(!callback) return sum;
+
+  return callback(sum);
+}
+

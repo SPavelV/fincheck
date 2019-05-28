@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
 import roubleIcon from '../assets/images/icons/rouble.svg'
-import {separateValue,getArrValues} from '../common-functions';
+import {separateValue,getArrValues,getSum} from '../common-functions';
 import styled from 'styled-components';
 
 
@@ -48,12 +48,6 @@ const TotalValue = styled.div`
 `;
 
 export default function TotalSum({valuesArr = [22]}) {
-  const getSum = (arr) => {
-    return separateValue(arr.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue;
-    }))
-  };
-
   return(
     <Inner>
       <Title>Всего</Title>
@@ -64,7 +58,7 @@ export default function TotalSum({valuesArr = [22]}) {
           wrapper="span"
           svgClassName="rouble-icon"
           />
-        {getSum(getArrValues(valuesArr,'sum'))}
+        { getSum(getArrValues(valuesArr,'sum'), separateValue) }
         </TotalValue>
     </Inner>
   )

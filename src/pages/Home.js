@@ -48,14 +48,12 @@ export class Home extends Component {
               <Alert/>
               <PreviewCard 
                 sectionTitle="Доходы" 
-                totalSum={5000000}
                 dataItems={dataIncome}/>
               
               <PreviewCard 
                 sectionTitle="Расходы"
-                totalSum={200000}
                 dataItems={dataCosts}/>
-              
+            
               <AddTransaction/>
  
             </InnerCards> 
