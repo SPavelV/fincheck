@@ -17,13 +17,10 @@ import {
 
 const Inner = styled(SectionInnerTransparent)`
      @media(min-width: ${mediaMinWidthDesktop}) {
-         display: flex;
-         flex-flow: row nowrap;
-         align-items: center;
-         justify-content: space-between;
-         @media(min-width: ${mediaMinWidthDesktop}) {
-             align-items: flex-start;
-         }
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        align-items: flex-start;
      }
 `;
 
@@ -61,21 +58,44 @@ const TriggerLoading = styled.div`
 const LoadingData = styled.div`
     font-size: 25px;
     text-align: center;
-    
+
 `;
 
-export class Income extends Component {
+export class Transactions extends Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: false,
-            dataList: getRightAmountData(props.dataTransaction, 14),
+            dataList: getRightAmountData(getTransactionData(props.dataTransaction, this.props.typeTransaction), 14),
         }
         this.triggerLoading = React.createRef();
     }
 
+    static propTypes = {
+        typeTransaction: PropTypes.string.isRequired,
+        dataTransaction: PropTypes.array.isRequired
+    }
+
+    static defaultPorps = {
+        typeTransaction: 'income',
+        dataTransaction: [
+          {
+            id: "no data",
+            category: "no data",
+            name: "no data",
+            cardNumber: "no data",
+            sum: 0,
+            currency: "no data",
+            link: "no data",
+            date: "no data", 
+            note: "no data"
+          }
+        ]
+      }
+
+
     loadData() {
-        const newItems =  getRightAmountData(this.props.dataTransaction, 5, this.state.dataList.length);
+        const newItems =  getRightAmountData(getTransactionData(this.props.dataTransaction, this.props.typeTransaction), 5, this.state.dataList.length);
         if (newItems.length === 0) return;
     
         this.setState((state, props) => {
@@ -111,13 +131,14 @@ export class Income extends Component {
     render() {
 
         const {dataTransaction} = this.props;
-        const lastMonthItems = getRightAmountData(dataTransaction, 31);
+        const dataType = getTransactionData(dataTransaction, this.props.typeTransaction);
+        const lastMonthItems = getRightAmountData(dataType, 31);
         
         return(
             <Inner>
                 <ChartInner>
                     <PieChart
-                        transactionType={'income'}
+                        transactionType={this.props.typeTransaction}
                         chartData={lastMonthItems}
                     />
                     <TotulSumInner>
@@ -135,8 +156,8 @@ export class Income extends Component {
 }
 
 const mapStateToProps = state => ({
-    dataTransaction: getTransactionData(state.transactions, 'income')
+    dataTransaction: state.transactions
   })
   
 
-export default connect(mapStateToProps)(Income);
+export default connect(mapStateToProps)(Transactions);

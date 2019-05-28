@@ -10,8 +10,7 @@ import MainNav from './components/main-nav/MainNav';
 
 
 import Home from './pages/Home.js';
-import Income from './pages/Income.js';
-import Costs from './pages/Costs.js';
+import Transactions from './pages/Transactions.js';
 
 import {
   maxWidth,
@@ -95,14 +94,12 @@ class App extends Component {
 
          
           <Route path="/" component={Home} exact/>
-          <Route path="/income" component={Income} exact/>
-          {/* <Route path="/income/:id" 
-                 render={({match, location, history}) => {
-                  const { id } = match.params; 
-                  return <IcomeDetails itemId = id/>
-                 }}/> */}
-          <Route path="/costs" component={Costs} exact/>
-
+          <Route path="/income/" 
+                 render={() => <Transactions typeTransaction = {"income"}/>} 
+                 exact/>
+          <Route path="/costs/" 
+                 render={() => <Transactions typeTransaction = {"costs"}/>} 
+                 exact/>
         </Router>
         
       </AppContainer>
