@@ -12,18 +12,22 @@ import {
   linkHoverColor,
   robotoFont,
   gutterMobile,
+  gutterDesktop,
   mediaMinWidthDesktop,
-  gutterDesktop
+  maxWidth
 } from '../common-styles';
 
 const Inner = styled.header`
   position: relative;
+  margin: 0 auto;
+  padding: ${gutterMobile} 0;
+  max-width: ${maxWidth};
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: ${robotoFont};
-  padding: ${gutterMobile} 0;
-
+  
   @media(min-width: ${mediaMinWidthDesktop}) {
     padding: ${gutterDesktop} 0;
   }

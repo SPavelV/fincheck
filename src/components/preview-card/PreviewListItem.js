@@ -93,10 +93,11 @@ export default function PreviewListItem({
     cardNumber='some card number',
     note = 'some note',
     sum=0, 
+    id='some id',
     category='income'}){
 
   const noteText = category === 'income' ? hidePartNumberCreditCard(cardNumber) : note;
-  const link = '/' + category + '-list/' + title;
+  const link = '/' + category + '-list/' + id;
 
   return (
     <InnerLink to={link}>

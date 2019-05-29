@@ -8,7 +8,6 @@ const Inner = styled.div`
 `;
 
 export default function TransactionsDetail({
-  dataTransaction=['no-data'],
   nameTransaction = 'transaction empty', 
   category='category empty'}){
 
@@ -17,7 +16,7 @@ export default function TransactionsDetail({
       <SecondHeader nameTransaction={nameTransaction} />
       <div>Transaction Detail list</div>
       <div>Transaction category: {category}</div>
-      <div>Transaction name: {nameTransaction}</div>
+      <div>Transaction id: {nameTransaction}</div>
     </Inner>
   )
 

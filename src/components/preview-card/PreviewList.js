@@ -65,6 +65,7 @@ export default function PreviewList({dataItems = defaultProps, maxItems = dataIt
                   sum={element.sum}
                   category={element.category}
                   note={element.note}
+                  id={element.id}
                 />
               </Item>
       }
