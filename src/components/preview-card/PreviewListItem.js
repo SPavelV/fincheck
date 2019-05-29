@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import roubleIcon from '../../assets/images/icons/rouble.svg'
 import angle from '../../assets/images/icons/angle.svg'
+import {Link} from 'react-router-dom';
 import {separateValue, hidePartNumberCreditCard} from '../../common-functions.js'
 
 import {
@@ -15,7 +16,7 @@ import {
   redColor
 } from '../../common-styles';
 
-const Inner = styled.a`
+const InnerLink = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: flex-start; 
@@ -95,9 +96,10 @@ export default function PreviewListItem({
     category='income'}){
 
   const noteText = category === 'income' ? hidePartNumberCreditCard(cardNumber) : note;
+  const link = '/' + category + '-list/' + title;
 
   return (
-    <Inner href="#">
+    <InnerLink to={link}>
       <Col>
         <Title>{title}</Title>
         <Note>{noteText}</Note>
@@ -122,7 +124,7 @@ export default function PreviewListItem({
         />
       </Sum>
     
-    </Inner>
+    </InnerLink>
   )
 }
 

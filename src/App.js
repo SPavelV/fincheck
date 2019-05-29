@@ -8,9 +8,9 @@ import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
 import MainNav from './components/main-nav/MainNav';
 
-
 import Home from './pages/Home.js';
 import Transactions from './pages/Transactions.js';
+import TransactionsDetail from './pages/TransactionsDetail.js';
 
 import {
   maxWidth,
@@ -87,7 +87,7 @@ class App extends Component {
         <Router>
           <Header className="app__header">
               <Link to = "/">
-                <HeaderLogo href="/" className="app__logo"/>
+                <HeaderLogo  className="app__logo"/>
               </Link>
             <MainNav />
           </Header>
@@ -100,6 +100,18 @@ class App extends Component {
           <Route path="/costs/" 
                  render={() => <Transactions typeTransaction = {"costs"}/>} 
                  exact/>
+          <Route path="/income-list/:id"
+                 render= { ({match}) => {
+                   const {id} = match.params;
+                   return <TransactionsDetail nameTransaction ={id} category={'income'}/>
+                 } }
+                 />
+          <Route path="/costs-list/:id"
+                render= { ({match}) => {
+                  const {id} = match.params;
+                  return <TransactionsDetail nameTransaction ={id} category={'costs'}/>
+                } }
+                />
         </Router>
         
       </AppContainer>
