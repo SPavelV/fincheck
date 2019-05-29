@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
-import roubleIcon from '../../assets/images/icons/rouble.svg'
-import angle from '../../assets/images/icons/angle.svg'
+import roubleIcon from '../../assets/images/icons/rouble.svg';
+import angle from '../../assets/images/icons/angle.svg';
 import {Link} from 'react-router-dom';
-import {separateValue, hidePartNumberCreditCard} from '../../common-functions.js'
+import {separateValue, hidePartNumberCreditCard} from '../../common-functions.js';
 
 import {
   greenColor,

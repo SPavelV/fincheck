@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {getTransactionData,sortByDate,getRightAmountData} from '../common-functions';
+
+import MainHeader from '../components/MainHeader'
 import PieChart from '../components/PieChart';
 import PreviewList from '../components/preview-card/PreviewList';
 import TotalSum from '../components/TotalSum';
@@ -15,7 +17,11 @@ import {
 
 } from '../common-styles';
 
-const Inner = styled(SectionInnerTransparent)`
+const Inner = styled.div`
+   position: relative;
+`;
+
+const InnerTransactions = styled(SectionInnerTransparent)`
      @media(min-width: ${mediaMinWidthDesktop}) {
         display: flex;
         flex-flow: row nowrap;
@@ -135,21 +141,26 @@ export class Transactions extends Component {
         const lastMonthItems = getRightAmountData(dataType, 31);
         
         return(
+
             <Inner>
-                <ChartInner>
-                    <PieChart
-                        transactionType={this.props.typeTransaction}
-                        chartData={lastMonthItems}
-                    />
-                    <TotulSumInner>
-                        <TotalSum valuesArr={lastMonthItems}/>
-                    </TotulSumInner>
-                </ChartInner>
-                <InnerTransactionList >
-                    <PreviewList dataItems={sortByDate(this.state.dataList)} />
-                    <TriggerLoading ref={this.triggerLoading}/>
-                    {this.state.loading ? <LoadingData>Загрузка данных</LoadingData> : ''}
-                </InnerTransactionList>
+
+                <MainHeader/>
+                <InnerTransactions>
+                    <ChartInner>
+                        <PieChart
+                            transactionType={this.props.typeTransaction}
+                            chartData={lastMonthItems}
+                        />
+                        <TotulSumInner>
+                            <TotalSum valuesArr={lastMonthItems}/>
+                        </TotulSumInner>
+                    </ChartInner>
+                    <InnerTransactionList >
+                        <PreviewList dataItems={sortByDate(this.state.dataList)} />
+                        <TriggerLoading ref={this.triggerLoading}/>
+                        {this.state.loading ? <LoadingData>Загрузка данных</LoadingData> : ''}
+                    </InnerTransactionList>
+                </InnerTransactions>
             </Inner>
         )
     }

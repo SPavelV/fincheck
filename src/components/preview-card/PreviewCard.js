@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ChartLine from './ChartLine';
 import TotalSum from './TotalSum';
@@ -47,7 +48,7 @@ const Inner = styled(PageInner)`
 
 `;
 
-const ViewAllLink = styled.a`
+const ViewAllLink = styled(Link)`
   display: block;
   width: 100%;
   margin-top: 15px;
@@ -70,19 +71,18 @@ const ViewAllLink = styled.a`
   }
 `;
 
-
 export default function PreviewCard ({dataItems = [0], sectionTitle='Some Title'}){
-
-
+  const transactionType = dataItems[0].category;
+  const linkViewAll = '/' + transactionType + '/';
   return (
     <Inner>
       <SectionTitle>{sectionTitle}</SectionTitle>
       <TotalSum value={ getSum(getArrValues(dataItems,'sum'), separateValue)}/>
       <ChartLine 
-      transactionType={dataItems[0].category} 
+      transactionType={transactionType} 
       chartData={getDataToChart(dataItems, 4)} />
       <PreviewList dataItems={dataItems} maxItems={4} />
-      <ViewAllLink href="#">Cмотреть все</ViewAllLink>
+      <ViewAllLink to={linkViewAll}>Cмотреть все</ViewAllLink>
     </Inner>
   )
 }

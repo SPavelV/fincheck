@@ -85,13 +85,6 @@ class App extends Component {
     return (
       <AppContainer className="app">
         <Router>
-          <Header className="app__header">
-              <Link to = "/">
-                <HeaderLogo  className="app__logo"/>
-              </Link>
-            <MainNav />
-          </Header>
-
          
           <Route path="/" component={Home} exact/>
           <Route path="/income/" 

@@ -1,39 +1,44 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {addTransaction} from '../actions';
+import {Link} from 'react-router-dom';
+import MainHeader from '../components/MainHeader';
 import Alert from '../components/Alert';
 import PreviewCard from '../components/preview-card/PreviewCard';
-import styled from 'styled-components';
-import {getTransactionData} from '../common-functions';
 import AddTransaction from '../components/AddTransaction';
-
+import {getTransactionData} from '../common-functions';
+import styled from 'styled-components';
 
 
 import {
     maxWidth,
     mediaMinWidthDesktop,
-    mediaMinWidthDesktopLarge
+    mediaMinWidthDesktopLarge,
   } from '../common-styles';
 
-  const InnerCards = styled.div`
-   @media(min-width: ${mediaMinWidthDesktop}) {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-   }
+const InnerCards = styled.div`
+  @media(min-width: ${mediaMinWidthDesktop}) {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  }
 
-   @media(min-width: ${mediaMinWidthDesktopLarge}) {
-    justify-content: space-between;
-    max-width: ${maxWidth};
-    margin: 0 auto;
-   }
+  @media(min-width: ${mediaMinWidthDesktopLarge}) {
+  justify-content: space-between;
+  max-width: ${maxWidth};
+  margin: 0 auto;
+  }
 `;
+
+const Inner = styled.div`
+   position: relative;
+`;
+
 
 export class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
         }
     }
 
@@ -44,19 +49,19 @@ export class Home extends Component {
         const dataCosts = getTransactionData(dataTransaction, 'costs');
 
         return (
-             <InnerCards>
+          <Inner>
+              <MainHeader/>
+              <InnerCards>
               <Alert/>
               <PreviewCard 
                 sectionTitle="Доходы" 
                 dataItems={dataIncome}/>
-              
               <PreviewCard 
                 sectionTitle="Расходы"
                 dataItems={dataCosts}/>
-            
               <AddTransaction/>
- 
             </InnerCards> 
+          </Inner>
         )
     }
 }

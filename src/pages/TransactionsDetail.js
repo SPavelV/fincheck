@@ -1,56 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import {
-  pageInner,
-  sectionInnerTransparent,
-  mediaMinWidthDesktop
-} from '../common-styles';
+import SecondHeader from '../components/SecondHeader';
 
 const Inner = styled.div`
   display: block;
 `;
 
-export default class TransactionsDetail extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
+export default function TransactionsDetail({
+  dataTransaction=['no-data'],
+  nameTransaction = 'transaction empty', 
+  category='category empty'}){
 
-    }
-  }
+  return (
+    <Inner>
+      <SecondHeader nameTransaction={nameTransaction} />
+      <div>Transaction Detail list</div>
+      <div>Transaction category: {category}</div>
+      <div>Transaction name: {nameTransaction}</div>
+    </Inner>
+  )
 
-  static propTypes = {
-    dataTransaction: PropTypes.array.isRequired,
-    type: PropTypes.string.isRequired,
-    nameTransaction: PropTypes.string.isRequired
-  }
+}
 
-  static dafaultProps ={
-    dataTransaction: [
-      {
-        id: "no data",
-        category: "no data",
-        name: "no data",
-        cardNumber: "no data",
-        sum: 0,
-        currency: "no data",
-        link: "no data",
-        date: "no data", 
-        note: "no data"
-      }
-    ],
-    type: 'type empty',
-    nameTransaction: 'transaction empty'
-  }
-
-  render() {
-    return (
-      <Inner>
-        <div>Transaction Detail list</div>
-        <div>Transaction category: {this.props.category}</div>
-        <div>Transaction name: {this.props.nameTransaction}</div>
-      </Inner>
-    )
-  }
+TransactionsDetail.propTypes = {
+  dataTransaction: PropTypes.array.isRequired,
+  type: PropTypes.string.isRequired,
+  nameTransaction: PropTypes.string.isRequired
 }
