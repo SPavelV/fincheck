@@ -96,13 +96,17 @@ class App extends Component {
           <Route path="/income-list/:id"
                  render= { ({match}) => {
                    const {id} = match.params;
-                   return <TransactionsDetail idTransaction ={id} category={'income'}/>
+                   return <TransactionsDetail 
+                    idTransaction ={id} 
+                    typeTransaction={'income'}/>
                  } }
                  />
           <Route path="/costs-list/:id"
                 render= { ({match}) => {
                   const {id} = match.params;
-                  return <TransactionsDetail idTransaction ={id}/>
+                  return <TransactionsDetail 
+                    idTransaction ={id}  
+                    typeTransaction={'costs'}/>
                 } }
                 />
         </Router>

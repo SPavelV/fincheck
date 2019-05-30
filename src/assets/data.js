@@ -405,3 +405,7 @@ export const transactions = [
   }
 ];
 
+export const transactionsDetail = [
+  
+]
+

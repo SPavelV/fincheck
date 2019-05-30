@@ -51,7 +51,7 @@ const defaultProps = [
   }
 ]
 
-export default function PreviewList({dataItems = defaultProps, maxItems = dataItems.length}){
+export default function PreviewList({dataItems = defaultProps, maxItems = dataItems.length,createDataTransactionDetail}){
 
   const getItems = () => {
 
@@ -59,13 +59,15 @@ export default function PreviewList({dataItems = defaultProps, maxItems = dataIt
     return dataItems.map((element,i) => {
       if(i < maxItems) {
         return  <Item key={element.id} markerColor={getColor()}>
-                <PreviewListItem 
+                <PreviewListItem
+                  createDataTransactionDetail={createDataTransactionDetail} 
                   title={element.name}
                   cardNumber={element.cardNumber}
                   sum={element.sum}
                   category={element.category}
                   note={element.note}
                   id={element.id}
+                  
                 />
               </Item>
       }

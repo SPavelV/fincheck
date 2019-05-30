@@ -100,8 +100,8 @@ export default(OriginalComponent) => class WrappedComponent extends Component{
   render() {
     
     return <OriginalComponent {...this.props} 
-            dataList={sortByDate(this.state.dataList)}
-            addPrealoader={this.addPrealoader}
-            />
+      dataList={sortByDate(this.state.dataList)}
+      addPrealoader={this.addPrealoader}
+      />
   }
 }

@@ -8,7 +8,9 @@ import {
   SORT_DATES_ALERTS_ITEM,
   ADD_TRANSACTION,
   REMOVE_TRANSACTION,
-  EDITING_TRANSACTION
+  EDITING_TRANSACTION,
+  CREATE_DATA_TRANSACTION_DETAIL,
+  DELETE_DATA_TRANSACTION_DETAIL
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -75,5 +77,18 @@ export function removeTransaction() {
 export function editignTransaction() {
   return {
     type: EDITING_TRANSACTION
+  }
+}
+
+export function createDataTransactionDetail(id) {
+  return {
+    type: CREATE_DATA_TRANSACTION_DETAIL,
+    payload: {id}
+  }
+}
+
+export function deleteDataTransactionDetail() {
+  return {
+    type: DELETE_DATA_TRANSACTION_DETAIL,
   }
 }

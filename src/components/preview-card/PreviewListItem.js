@@ -94,13 +94,14 @@ export default function PreviewListItem({
     note = 'some note',
     sum=0, 
     id='some id',
-    category='income'}){
+    category='income',
+    createDataTransactionDetail}){
 
   const noteText = category === 'income' ? hidePartNumberCreditCard(cardNumber) : note;
   const link = '/' + category + '-list/' + id;
 
   return (
-    <InnerLink to={link}>
+    <InnerLink to={link} onClick={(id)=>createDataTransactionDetail(id)}>
       <Col>
         <Title>{title}</Title>
         <Note>{noteText}</Note>

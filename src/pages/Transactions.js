@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {createDataTransactionDetail} from '../actions/'
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {getTransactionData,sortByDate,getRightAmountData} from '../common-functions';
 import lazyLoading from '../decorators/lazyLoading';
+
 
 import MainHeader from '../components/MainHeader'
 import PieChart from '../components/PieChart';
@@ -55,7 +57,7 @@ const TotulSumInner = styled.div`
     transform: translate(-50%,-50%);
 `;
 
-function Transactions({typeTransaction,dataTransaction,dataList,addPrealoader}) {
+function Transactions({typeTransaction,dataTransaction,dataList,addPrealoader,createDataTransactionDetail}) {
    
     const dataType = getTransactionData(dataTransaction, typeTransaction);
     const lastMonthItems = getRightAmountData(dataType, 31);
@@ -74,7 +76,9 @@ function Transactions({typeTransaction,dataTransaction,dataList,addPrealoader}) 
                     </TotulSumInner>
                 </ChartInner>
                 <InnerTransactionList >
-                    <PreviewList dataItems={sortByDate(dataList)} />
+                    <PreviewList 
+                        dataItems={dataList} 
+                        createDataTransactionDetail={createDataTransactionDetail} />
                     {addPrealoader()}
                 </InnerTransactionList>
             </InnerTransactions>
@@ -92,4 +96,4 @@ const mapStateToProps = state => ({
   })
 
 
-export default connect(mapStateToProps)(lazyLoading(Transactions));
+export default connect(mapStateToProps,createDataTransactionDetail)(lazyLoading(Transactions));
