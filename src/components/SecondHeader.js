@@ -50,7 +50,7 @@ const Title = styled.div`
   line-height: 24px;
 `;
 
-function SecondHeader({nameTransaction='some-title',history}) {
+function SecondHeader({transactionName='some-title',history}) {
 
   const goBack = () => {
     history.goBack();
@@ -65,7 +65,7 @@ function SecondHeader({nameTransaction='some-title',history}) {
           onClick={goBack}
           />
 
-        <Title>{nameTransaction}</Title>
+        <Title>{transactionName}</Title>
         <Search/>
       </Inner>
   )
