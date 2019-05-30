@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {getTransactionData,sortByDate,getRightAmountData} from '../common-functions';
+import lazyLoading from '../decorators/lazyLoading';
 
 import MainHeader from '../components/MainHeader'
 import PieChart from '../components/PieChart';
@@ -67,7 +68,7 @@ const LoadingData = styled.div`
 
 `;
 
-export class Transactions extends Component {
+class Transactions extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -171,4 +172,4 @@ const mapStateToProps = state => ({
   })
   
 
-export default connect(mapStateToProps)(Transactions);
+export default connect(mapStateToProps)(lazyLoading(Transactions));

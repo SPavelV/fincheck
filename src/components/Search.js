@@ -67,7 +67,7 @@ export default class Search extends Component {
     return (
       <Inner>
 
-        <label for="search"
+        <label htmlFor="search"
                onClick={()=> this.toggleSearch()}>
           <ReactSVG
             evalScripts="always"
