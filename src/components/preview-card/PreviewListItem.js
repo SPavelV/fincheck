@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 import ReactSVG from 'react-svg';
 import roubleIcon from '../../assets/images/icons/rouble.svg';
 import angle from '../../assets/images/icons/angle.svg';
 import {Link} from 'react-router-dom';
 import {separateValue, hidePartNumberCreditCard} from '../../common-functions.js';
+import {createDataTransactionDetail} from '../../actions/';
 
 import {
   greenColor,
@@ -88,7 +90,7 @@ const SumText = styled.span`
   overflow: hidden;
 `;
 
-export default function PreviewListItem({
+function PreviewListItem({
     title="title", 
     cardNumber='some card number',
     note = 'some note',
@@ -101,7 +103,7 @@ export default function PreviewListItem({
   const link = '/' + category + '-list/' + id;
 
   return (
-    <InnerLink to={link} onClick={(id)=>createDataTransactionDetail(id)}>
+    <InnerLink to={link} >
       <Col>
         <Title>{title}</Title>
         <Note>{noteText}</Note>
@@ -137,3 +139,15 @@ PreviewListItem.propTypes = {
   sum: PropTypes.number.isRequired,
   category: PropTypes.string.isRequired
 }
+
+const mapStateToProps = state => ({
+  dataTransaction: state.transactions
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createDataTransactionDetail: () => dispatch(createDataTransactionDetail())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PreviewListItem);

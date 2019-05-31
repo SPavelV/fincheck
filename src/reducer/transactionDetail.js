@@ -12,7 +12,7 @@ export default (state = transactionsDetail, action) => {
 
   switch(type) {
     case CREATE_DATA_TRANSACTION_DETAIL: 
-      console.log('---CREATE_DATA_TRANSACTION_DETAIL:',);
+      console.log('---CREATE_DATA_TRANSACTION_DETAIL:',payload);
       break;
     case DELETE_DATA_TRANSACTION_DETAIL:
       console.log('---DELETE_DATA_TRANSACTION_DETAIL:',);
