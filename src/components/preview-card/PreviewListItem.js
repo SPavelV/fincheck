@@ -91,7 +91,7 @@ const SumText = styled.span`
 `;
 
 function PreviewListItem({
-    title="title", 
+    name="some name", 
     cardNumber='some card number',
     note = 'some note',
     sum=0, 
@@ -103,9 +103,9 @@ function PreviewListItem({
   const link = '/' + category + '-list/' + id;
 
   return (
-    <InnerLink to={link} >
+    <InnerLink to={link} onClick={()=>createDataTransactionDetail({id,category,name})}>
       <Col>
-        <Title>{title}</Title>
+        <Title>{name}</Title>
         <Note>{noteText}</Note>
       </Col>
     
@@ -133,21 +133,17 @@ function PreviewListItem({
 }
 
 PreviewListItem.propTypes = {
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   cardNumber: PropTypes.string.isRequired,
   note: PropTypes.string.isRequired,
   sum: PropTypes.number.isRequired,
   category: PropTypes.string.isRequired
 }
 
-const mapStateToProps = state => ({
-  dataTransaction: state.transactions
-})
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    createDataTransactionDetail: () => dispatch(createDataTransactionDetail())
+    createDataTransactionDetail: (payload) => dispatch(createDataTransactionDetail(payload))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PreviewListItem);
+export default connect(()=>({}), mapDispatchToProps)(PreviewListItem);

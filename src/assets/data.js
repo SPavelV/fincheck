@@ -405,7 +405,7 @@ export const transactions = [
   }
 ];
 
-export const transactionsDetail = [
+export const detailTransaction = [
   
 ]
 

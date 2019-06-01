@@ -61,7 +61,7 @@ export default function PreviewList({dataItems = defaultProps, maxItems = dataIt
         return  <Item key={element.id} markerColor={getColor()}>
                 <PreviewListItem
                   createDataTransactionDetail={createDataTransactionDetail} 
-                  title={element.name}
+                  name={element.name}
                   cardNumber={element.cardNumber}
                   sum={element.sum}
                   category={element.category}

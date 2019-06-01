@@ -25,6 +25,10 @@ export function getTransactionData(data, typeTransaction) {
   return data.filter(element=> element.category === typeTransaction);
 }
 
+export function getTransactionName(data,typeTransaction,name) {
+  return data.filter(element => element.category === typeTransaction && element.name===name);
+}
+
 export function getRightAmountData(data, amount = 10, startIndex = 0){
   return data.filter((element, i) => i >= startIndex && i < amount + startIndex );
 }

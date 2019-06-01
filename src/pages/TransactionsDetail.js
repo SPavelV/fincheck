@@ -25,57 +25,15 @@ const InnerTransactionList = styled(PageInner)`
     }
 `;
 
-class TransactionsDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      transaction: this.getCurrentTransaction(this.props.dataTransaction),
-      detailData: this.props.dataTransaction
-    }
-  }
-
-  static propTypes = {
-    dataTransaction: PropTypes.array.isRequired,
-    idTransaction: PropTypes.string.isRequired
-  }
-
-  static defaultPorps = {
-    idTransaction: 'some id',
-    dataTransaction: [
-      {
-        id: "no data",
-        category: "no data",
-        name: "no data",
-        cardNumber: "no data",
-        sum: 0,
-        currency: "no data",
-        link: "no data",
-        date: "no data", 
-        note: "no data"
-      }
-    ]
-  }
-
-  getCurrentTransaction(data) {
-    return data.filter(element => element.id === this.props.idTransaction)[0];
-  }
-
-  getDetailDataTransactions(data) { 
-    const currTransaction = data.filter(element => element.id === this.props.idTransaction)[0];
-    return data.filter(element => currTransaction.category === element.category && currTransaction.name === element.name);
-  }
-
-
-  render() {
-    const {idTransaction,dataList,addPrealoader} = this.props;
+function TransactionsDetail({idTransaction='some id',typeTransaction='income', dataList, addPrealoader}){
+  console.log(dataList)
 
     return (
       <Inner>
-        <SecondHeader transactionName={this.state.transaction.name} />
+        <SecondHeader transactionName={dataList[0].name} />
         <div>Transaction Detail list</div>
-        <div>Transaction category: {this.state.transaction.category}</div>
+        <div>Transaction category: {dataList[0].category}</div>
         <div>Transaction id: {idTransaction}</div>
-
 
         <InnerTransactionList >
           <PreviewList dataItems={dataList} />
@@ -83,14 +41,11 @@ class TransactionsDetail extends React.Component {
         </InnerTransactionList>
       </Inner>
     )
-  }
-
+  
 }
 
-
 const mapStateToProps = state => ({
-  dataTransaction: state.transactions
+  dataTransaction: state.detailTransaction
 })
-
 
 export default connect(mapStateToProps)(lazyLoading(TransactionsDetail));

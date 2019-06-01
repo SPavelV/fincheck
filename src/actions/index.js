@@ -80,10 +80,10 @@ export function editignTransaction() {
   }
 }
 
-export function createDataTransactionDetail(id) {
+export function createDataTransactionDetail(payload) {
   return {
     type: CREATE_DATA_TRANSACTION_DETAIL,
-    payload: {id}
+    payload
   }
 }
 
