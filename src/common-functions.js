@@ -22,18 +22,34 @@ export function getCurrentColor(transactionType='income') {
 }
 
 export function getTransactionData(data, typeTransaction) {
+  if(!Array.isArray(data) || data.length === 0) {
+    
+    return;
+  };
   return data.filter(element=> element.category === typeTransaction);
 }
 
 export function getTransactionName(data,typeTransaction,name) {
+  if(!Array.isArray(data) || data.length === 0) {
+    
+    return;
+  };
   return data.filter(element => element.category === typeTransaction && element.name===name);
 }
 
 export function getRightAmountData(data, amount = 10, startIndex = 0){
+  if(!Array.isArray(data) || data.length === 0) {
+    
+    return;
+  };
   return data.filter((element, i) => i >= startIndex && i < amount + startIndex );
 }
 
 export function getDataToChart(data, maxItems = data.length,typeChart = 'line') {
+  if(!Array.isArray(data) || data.length === 0) {
+    
+    return;
+  };
 
   if(typeChart === 'line') {
     const dataChart = {};
@@ -59,8 +75,8 @@ export function getDataToChart(data, maxItems = data.length,typeChart = 'line') 
 }
 
 export function sortByDate(data){
-  if(!Array.isArray(data)) {
-    console.log('---data is not array')
+  if(!Array.isArray(data) || data.length === 0) {
+    
     return;
   };
   
@@ -72,8 +88,8 @@ export function sortByDate(data){
 };
 
 export function sortBySum(data) {
-  if(!Array.isArray(data)) {
-    console.log('---data is not array')
+  if(!Array.isArray(data) || data.length === 0) {
+    
     return;
   };
 
@@ -82,22 +98,36 @@ export function sortBySum(data) {
   })];
 }
 
-export function getArrValues(arr, propName) {
-  return  arr.map(item => item[propName]);
+export function getArrValues(data, propName) {
+  if(!Array.isArray(data) || data.length === 0) {
+    
+    return;
+  };
+  return  data.map(item => item[propName]);
 }
 
-export function getSum(arr, callback) {
-  if(!Array.isArray(arr)) {
-    console.log('---data is not array')
+export function getSum(data, callback) {
+  if(!Array.isArray(data) || data.length === 0) {
+    
     return;
-  }
+  };
 
-  const sum = arr.reduce((accumulator, currentValue) => {
+  const sum = data.reduce((accumulator, currentValue) => {
     return accumulator + currentValue;
   })
 
   if(!callback) return sum;
 
   return callback(sum);
+}
+
+export function formatDate(date) {
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric'
+  };
+  const dateFormat =  new Date(date);
+  return dateFormat.toLocaleString("ru",options);
 }
 

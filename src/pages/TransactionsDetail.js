@@ -6,7 +6,7 @@ import SecondHeader from '../components/SecondHeader';
 import lazyLoading from '../decorators/lazyLoading';
 import {getTransactionData,sortByDate,getRightAmountData} from '../common-functions';
 
-import PreviewList from '../components/preview-card/PreviewList';
+import TransactionDetailList from '../components/TransactionDetailList';
 
 import {
   PageInner,
@@ -26,21 +26,23 @@ const InnerTransactionList = styled(PageInner)`
 `;
 
 function TransactionsDetail({idTransaction='some id',typeTransaction='income', dataList, addPrealoader}){
-  console.log(dataList)
-
+  if(!Array.isArray(dataList) || dataList.length === 0) {
     return (
       <Inner>
-        <SecondHeader transactionName={dataList[0].name} />
-        <div>Transaction Detail list</div>
-        <div>Transaction category: {dataList[0].category}</div>
-        <div>Transaction id: {idTransaction}</div>
-
-        <InnerTransactionList >
-          <PreviewList dataItems={dataList} />
-          {addPrealoader()}
-        </InnerTransactionList>
+        <SecondHeader transactionName={"no data"} />
       </Inner>
     )
+  };
+
+  return (
+    <Inner>
+      <SecondHeader transactionName={dataList[0].name} />
+      <InnerTransactionList >
+        <TransactionDetailList dataItems={dataList} />
+        {addPrealoader()}
+      </InnerTransactionList>
+    </Inner>
+  )
   
 }
 

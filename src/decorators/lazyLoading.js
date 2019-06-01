@@ -23,7 +23,7 @@ export default(OriginalComponent) => class WrappedComponent extends Component{
     super(props);
     this.state = {
         loading: false,
-        dataList: getRightAmountData(getTransactionData(props.dataTransaction, this.props.typeTransaction), 14),
+        dataList: getRightAmountData(getTransactionData(props.dataTransaction, this.props.typeTransaction), 10),
     }
     this.triggerLoading = React.createRef();
     this.addPrealoader = this.addPrealoader.bind(this);
@@ -83,7 +83,8 @@ export default(OriginalComponent) => class WrappedComponent extends Component{
   }
 
   componentDidMount() {
-      this.addObserver();
+    if(!Array.isArray(this.state.dataList) || this.state.dataList.length === 0) return;
+    this.addObserver();
   }
 
   addPrealoader(){
@@ -95,10 +96,15 @@ export default(OriginalComponent) => class WrappedComponent extends Component{
     )
   
   }
-
+  
 
   render() {
-    
+
+    if(!Array.isArray(this.state.dataList) || this.state.dataList.length === 0) {
+      console.log('---data is not array or arr.length = 0')
+      return <OriginalComponent {...this.props}/>;
+    } 
+
     return <OriginalComponent {...this.props} 
       dataList={sortByDate(this.state.dataList)}
       addPrealoader={this.addPrealoader}
