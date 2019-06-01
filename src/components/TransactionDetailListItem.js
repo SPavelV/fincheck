@@ -16,7 +16,7 @@ import {
 const InnerLink = styled(Link)`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; 
+  align-items: center; 
   text-decoration: none;
   min-height: 35px;
 `;

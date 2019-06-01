@@ -405,5 +405,6 @@ export const transactions = [
   }
 ];
 
-export const detailTransaction = {}
+export const detailTransaction = []
 
+export const search = []

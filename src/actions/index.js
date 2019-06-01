@@ -10,7 +10,10 @@ import {
   REMOVE_TRANSACTION,
   EDITING_TRANSACTION,
   CREATE_DATA_TRANSACTION_DETAIL,
-  DELETE_DATA_TRANSACTION_DETAIL
+  DELETE_DATA_TRANSACTION_DETAIL,
+  CREATE_SELECT_TRANSACTION_ITEM,
+  CREATE_DATA_SEARCH_DETAIL_TRANSACTION,
+  DELETE_DATA_SEARCH_DETAIL_TRANSACTION
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -92,3 +95,25 @@ export function deleteDataTransactionDetail() {
     type: DELETE_DATA_TRANSACTION_DETAIL,
   }
 }
+
+export function createSelectTransactionItem(payload) {
+  return {
+    type: CREATE_SELECT_TRANSACTION_ITEM,
+    payload
+  }
+}
+
+export function createDataSearchDetail(payload) {
+  return {
+    type: CREATE_DATA_SEARCH_DETAIL_TRANSACTION,
+    payload
+  }
+}
+
+
+export function deleteDataSearchDetail() {
+  return {
+    type: DELETE_DATA_SEARCH_DETAIL_TRANSACTION
+  }
+}
+

@@ -1,7 +1,8 @@
 import {transactions} from '../assets/data';
 import {getTransactionName} from '../common-functions';
 import {
-  CREATE_DATA_TRANSACTION_DETAIL
+  CREATE_DATA_SEARCH_DETAIL_TRANSACTION,
+  DELETE_DATA_SEARCH_DETAIL_TRANSACTION
 } from '../constants';
 
 export default (state = [], action) => {
@@ -11,10 +12,13 @@ export default (state = [], action) => {
   } = action;
 
   switch(type) {
-    case CREATE_DATA_TRANSACTION_DETAIL: 
+    case CREATE_DATA_SEARCH_DETAIL_TRANSACTION: 
       const {category,name} = payload;
       state = getTransactionName(transactions,category,name);
       return state;
+    case DELETE_DATA_SEARCH_DETAIL_TRANSACTION:
+      console.log('---DELETE_DATA_SEARCH_DETAIL_TRANSACTION:',);
+      return [];
     default:
       return state;
   }

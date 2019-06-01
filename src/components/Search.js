@@ -1,8 +1,10 @@
 import React,{Component} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import ReactSVG from 'react-svg';
 import styled from 'styled-components';
 import searchIcon from '../assets/images/icons/search.svg';
+import {createDataSearchDetail,deleteDataSearchDetail} from '../actions';
 
 import {
   gutterMobile,
@@ -31,7 +33,7 @@ const InputSearch = styled.input`
   }
 `;
 
-export default class Search extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,6 +50,11 @@ export default class Search extends Component {
     })
   }
 
+  createCurrentData() {
+    const {category,name} = this.props.selectTransactionItem;
+    this.props.createDataSearchDetail({category,name});
+  }
+
   inputHandler(evt) {
     const inputValue = evt.target.value;
     this.setState(() => {
@@ -61,6 +68,14 @@ export default class Search extends Component {
     this.setState(() => {
       return {isActive: false}
     });
+  }
+
+  componentDidMount() {
+    this.createCurrentData();
+  }
+
+  componentWillUnmount() {
+    this.props.deleteDataSearchDetail();
   }
 
   render() {
@@ -80,9 +95,24 @@ export default class Search extends Component {
                      isActive={this.state.isActive} 
                      type="text"
                      value={this.state.inputValue}
-                     onChange={(evt) => this.inputHandler(evt)}/>
+                     onChange={(evt) => this.inputHandler(evt)}
+                     />
       </Inner>
     )
   }
-  
 }
+
+const mapStateToProps = (state) => {
+  return {
+    selectTransactionItem: state.selectTransactionItem
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createDataSearchDetail: (payload) => dispatch(createDataSearchDetail(payload)),
+    deleteDataSearchDetail: () => dispatch(deleteDataSearchDetail())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

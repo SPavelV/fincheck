@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SecondHeader from '../components/SecondHeader';
 import lazyLoading from '../decorators/lazyLoading';
-import {getTransactionData,sortByDate,getRightAmountData} from '../common-functions';
 
 import TransactionDetailList from '../components/TransactionDetailList';
 

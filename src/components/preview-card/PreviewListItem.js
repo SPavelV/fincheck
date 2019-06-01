@@ -7,7 +7,7 @@ import roubleIcon from '../../assets/images/icons/rouble.svg';
 import angle from '../../assets/images/icons/angle.svg';
 import {Link} from 'react-router-dom';
 import {separateValue, hidePartNumberCreditCard} from '../../common-functions.js';
-import {createDataTransactionDetail} from '../../actions/';
+import {createDataTransactionDetail,createSelectTransactionItem} from '../../actions/';
 
 import {
   greenColor,
@@ -97,13 +97,20 @@ function PreviewListItem({
     sum=0, 
     id='some id',
     category='income',
-    createDataTransactionDetail}){
+    createDataTransactionDetail,
+    createSelectTransactionItem
+    }){
 
   const noteText = category === 'income' ? hidePartNumberCreditCard(cardNumber) : note;
   const link = '/' + category + '-list/' + id;
 
+  const clickHandler = (evt,id,category,name) => {
+    createDataTransactionDetail({id,category,name});
+    createSelectTransactionItem({id});
+  }
+
   return (
-    <InnerLink to={link} onClick={()=>createDataTransactionDetail({id,category,name})}>
+    <InnerLink to={link} onClick={(evt)=>clickHandler(evt,id,category,name)} >
       <Col>
         <Title>{name}</Title>
         <Note>{noteText}</Note>
@@ -142,7 +149,8 @@ PreviewListItem.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createDataTransactionDetail: (payload) => dispatch(createDataTransactionDetail(payload))
+    createDataTransactionDetail: (payload) => dispatch(createDataTransactionDetail(payload)),
+    createSelectTransactionItem: (payload) => dispatch(createSelectTransactionItem(payload))
   }
 }
 
