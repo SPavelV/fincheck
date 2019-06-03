@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import ReactSVG from 'react-svg';
 import styled from 'styled-components';
 import searchIcon from '../assets/images/icons/search.svg';
-import {createDataSearchDetail,deleteDataSearchDetail} from '../actions';
+import {createDataSearchDetail,deleteDataSearchDetail,createDataTransactionDetailAfterSearch} from '../actions';
 
 import {
   gutterMobile,
@@ -57,17 +57,13 @@ class Search extends Component {
 
   inputHandler(evt) {
     const inputValue = evt.target.value;
+    const {category, name} = this.props.selectTransactionItem;
     this.setState(() => {
       return {inputValue}
-    });
-    console.log('input value:', this.state.inputValue) 
-  }
-
-  handlerInputBlur(evt) {
-    if(evt.target === this.openSearchRef.current) return;
-    this.setState(() => {
-      return {isActive: false}
-    });
+    }, () => this.props.createDataTransactionDetailAfterSearch( {inputValue:this.state.inputValue,category, name} ));
+    // console.log('input value:', this.state.inputValue);
+    
+    
   }
 
   componentDidMount() {
@@ -104,14 +100,16 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectTransactionItem: state.selectTransactionItem
+    selectTransactionItem: state.selectTransactionItem,
+    detailTransaction: state.detailTransaction
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createDataSearchDetail: (payload) => dispatch(createDataSearchDetail(payload)),
-    deleteDataSearchDetail: () => dispatch(deleteDataSearchDetail())
+    deleteDataSearchDetail: () => dispatch(deleteDataSearchDetail()),
+    createDataTransactionDetailAfterSearch: (payload) => dispatch(createDataTransactionDetailAfterSearch(payload))
   }
 }
 

@@ -77,7 +77,7 @@ function Transactions({typeTransaction,dataTransaction,dataList,addPrealoader,cr
                 </ChartInner>
                 <InnerTransactionList >
                     <PreviewList 
-                        dataItems={dataList} 
+                        dataItems={ getTransactionData(dataTransaction, typeTransaction)} 
                         createDataTransactionDetail={createDataTransactionDetail} />
                     {addPrealoader()}
                 </InnerTransactionList>

@@ -9,11 +9,13 @@ import {
   ADD_TRANSACTION,
   REMOVE_TRANSACTION,
   EDITING_TRANSACTION,
+  CREATE_TRANSACTIONS_CATEGORY,
   CREATE_DATA_TRANSACTION_DETAIL,
   DELETE_DATA_TRANSACTION_DETAIL,
   CREATE_SELECT_TRANSACTION_ITEM,
+  CREATE_DATA_TRANSACTION_DETAIL_AFTER_SAERCH,
   CREATE_DATA_SEARCH_DETAIL_TRANSACTION,
-  DELETE_DATA_SEARCH_DETAIL_TRANSACTION
+  DELETE_DATA_SEARCH_DETAIL_TRANSACTION,
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -86,6 +88,13 @@ export function editignTransaction() {
 export function createDataTransactionDetail(payload) {
   return {
     type: CREATE_DATA_TRANSACTION_DETAIL,
+    payload
+  }
+}
+
+export function createDataTransactionDetailAfterSearch(payload) {
+  return {
+    type: CREATE_DATA_TRANSACTION_DETAIL_AFTER_SAERCH,
     payload
   }
 }

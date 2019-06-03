@@ -105,6 +105,7 @@ function PreviewListItem({
   const link = '/' + category + '-list/' + id;
 
   const clickHandler = (evt,id,category,name) => {
+    // evt.preventDefault();
     createDataTransactionDetail({id,category,name});
     createSelectTransactionItem({id});
   }

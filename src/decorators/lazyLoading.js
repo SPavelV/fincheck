@@ -22,46 +22,33 @@ export default(OriginalComponent) => class WrappedComponent extends Component{
   constructor(props) {
     super(props);
     this.state = {
-        loading: false,
-        dataList: getRightAmountData(getTransactionData(props.dataTransaction, this.props.typeTransaction), 10),
+        loading: false
     }
     this.triggerLoading = React.createRef();
     this.addPrealoader = this.addPrealoader.bind(this);
   }
 
   static propTypes = {
-    typeTransaction: PropTypes.string.isRequired,
-    dataTransaction: PropTypes.array.isRequired
-  }
-
-  static defaultPorps = {
-    typeTransaction: 'income',
-    dataTransaction: [
-      {
-        id: "no data",
-        category: "no data",
-        name: "no data",
-        cardNumber: "no data",
-        sum: 0,
-        currency: "no data",
-        link: "no data",
-        date: "no data", 
-        note: "no data"
-      }
-    ]
+    typeTransaction: PropTypes.string.isRequired
   }
 
     
   loadData() {
-    const newItems =  getRightAmountData(getTransactionData(this.props.dataTransaction, this.props.typeTransaction), 5, this.state.dataList.length);
-    if (newItems.length === 0) return;
+    // console.log( this.props.dataTransaction);
+    // this.props.createDataTransactionDetail({
+    //   category: this.props.dataTransaction[0].catyegory,
+    //   name: this.props.dataTransaction[0].name
+    // })
+    // console.log( this.props.dataTransaction);
+    // this.props.createDataTransactionDetail({
+    //   category: this.props.dataTransaction[0].catyegory,
+    //   name: this.props.dataTransaction[0].name
+    // })
+  }
 
-    this.setState((state, props) => {
-      return {
-          dataList: [...state.dataList, ...newItems],
-          loading: true
-      }
-    },  () => this.setState({loading: false}) )
+  observerEvent(){
+    console.log('---observer:',);
+    this.props.observeCallback()
   }
 
   addObserver() {
@@ -69,21 +56,21 @@ export default(OriginalComponent) => class WrappedComponent extends Component{
       root: null,
       rootMargin: '0px',
       threshold: 0
-  }
+   }
   
-  const observer  = new IntersectionObserver( entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) {
-            this.loadData();
-        }
-    })
+    const observer  = new IntersectionObserver( entries => {
+      entries.forEach(entry => {
+          if(entry.isIntersecting) {
+              this.observerEvent();
+          }
+      })
     }, config)
 
     observer.observe(this.triggerLoading.current);
   }
 
   componentDidMount() {
-    if(!Array.isArray(this.state.dataList) || this.state.dataList.length === 0) return;
+    // if(!Array.isArray(this.state.dataList) || this.state.dataList.length === 0) return;
     this.addObserver();
   }
 
@@ -100,13 +87,12 @@ export default(OriginalComponent) => class WrappedComponent extends Component{
 
   render() {
 
-    if(!Array.isArray(this.state.dataList) || this.state.dataList.length === 0) {
-      console.log('---data is not array or arr.length = 0')
-      return <OriginalComponent {...this.props}/>;
-    } 
+    // if(!Array.isArray(this.state.dataList) || this.state.dataList.length === 0) {
+    //   console.log('---data is not array or arr.length = 0')
+    //   return <OriginalComponent {...this.props}/>;
+    // } 
 
     return <OriginalComponent {...this.props} 
-      dataList={sortByDate(this.state.dataList)}
       addPrealoader={this.addPrealoader}
       />
   }

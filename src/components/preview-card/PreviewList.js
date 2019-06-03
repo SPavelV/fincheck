@@ -67,7 +67,6 @@ export default function PreviewList({dataItems = defaultProps, maxItems = dataIt
                   category={element.category}
                   note={element.note}
                   id={element.id}
-                  
                 />
               </Item>
       }

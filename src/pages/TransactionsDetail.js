@@ -24,8 +24,8 @@ const InnerTransactionList = styled(PageInner)`
     }
 `;
 
-function TransactionsDetail({idTransaction='some id',typeTransaction='income', dataList, addPrealoader}){
-  if(!Array.isArray(dataList) || dataList.length === 0) {
+function TransactionsDetail({idTransaction='some id',typeTransaction='income', dataTransaction, addPrealoader}){
+  if(!Array.isArray(dataTransaction) || dataTransaction.length === 0) {
     return (
       <Inner>
         <SecondHeader transactionName={"no data"} />
@@ -35,10 +35,10 @@ function TransactionsDetail({idTransaction='some id',typeTransaction='income', d
 
   return (
     <Inner>
-      <SecondHeader transactionName={dataList[0].name} />
+      <SecondHeader transactionName={dataTransaction[0].name} />
       <InnerTransactionList >
-        <TransactionDetailList dataItems={dataList} />
-        {addPrealoader()}
+        <TransactionDetailList dataItems={dataTransaction} />
+        {/* {addPrealoader()} */}
       </InnerTransactionList>
     </Inner>
   )
@@ -49,4 +49,6 @@ const mapStateToProps = state => ({
   dataTransaction: state.detailTransaction
 })
 
-export default connect(mapStateToProps)(lazyLoading(TransactionsDetail));
+
+
+export default connect(mapStateToProps)(TransactionsDetail);
