@@ -17,8 +17,7 @@ export default (state = [], action) => {
       state = getTransactionName(transactions,category,name);
       return state;
     case DELETE_DATA_SEARCH_DETAIL_TRANSACTION:
-      console.log('---DELETE_DATA_SEARCH_DETAIL_TRANSACTION:',);
-      return [];
+      return state;
     default:
       return state;
   }

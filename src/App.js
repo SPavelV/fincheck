@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {createDataTransactionDetail} from './actions/'
 import {BrowserRouter as Router, Route,Link} from 'react-router-dom';
 import styled from 'styled-components';
 import './assets/fonts/Eczar/stylesheet.css';
 import './assets/fonts/Roboto/stylesheet.css';
 import logo from './assets/images/icons/logo.svg';
 import logoSmall from './assets/images/icons/purse.svg';
-import MainNav from './components/main-nav/MainNav';
 
 import Home from './pages/Home.js';
 import Transactions from './pages/Transactions.js';
@@ -19,35 +20,10 @@ import {
   mediaMinWidthDesktop
 } from './common-styles';
 
-const Header = styled.header`
-  padding: ${gutterMobile};
-  display: flex;
-  justify-content: space-between;
-  max-width: ${maxWidth};
-  width: 100%;
-  margin: 0 auto;
-
-  @media(min-width: ${mediaMinWidthDesktop}) {
-    padding: ${gutterDesktop};
-  }
-`;
-
 const AppContainer = styled.div`
   padding-bottom: 75px;
   * {
     box-sizing: border-box;
-  }
-`
-
-const HeaderLogo = styled.div`
-  display: flex;
-  background: url(${logoSmall}) no-repeat center;
-  width: 19px;
-  height: 19px;
-
-  @media(min-width: 768px) {
-    background: url(${logo}) no-repeat center;
-    width: 100px;
   }
 `
 
@@ -88,10 +64,10 @@ class App extends Component {
          
           <Route path="/" component={Home} exact/>
           <Route path="/income/" 
-                 render={() => <Transactions typeTransaction = {"income"}/>} 
+                 render={() => <Transactions typeTransaction = {"income"} observeCallback = {createDataTransactionDetail}/>} 
                  exact/>
           <Route path="/costs/" 
-                 render={() => <Transactions typeTransaction = {"costs"}/>} 
+                 render={() => <Transactions typeTransaction = {"costs"} observeCallback = {createDataTransactionDetail}/>} 
                  exact/>
           <Route path="/income-list/:id"
                  render= { ({match}) => {
@@ -116,4 +92,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createDataTransactionDetail: (payload) => dispatch(createDataTransactionDetail(payload))
+  }
+}
+
+
+export default connect(()=>({}), mapDispatchToProps)(App);
