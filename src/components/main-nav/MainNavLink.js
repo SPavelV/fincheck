@@ -16,7 +16,8 @@ import {
   linkHoverColor,
   linkActive,
   mediaMinWidthDesktop,
-  grayColor
+  grayColor,
+  robotoFont
 } from '../../common-styles';
 
 const LinkNavigation = styled(NavLink)`
@@ -24,7 +25,7 @@ const LinkNavigation = styled(NavLink)`
   display: flex;
   align-items: center;
   font-size: 0;
-  font-family: 'Roboto';
+  font-family: ${robotoFont};
   font-weight: normal;
   text-decoration: none;
   color: ${linkColor};

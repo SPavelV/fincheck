@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 
 import {
   robotoFont,
   bgSectionColor,
   blackColor,
+  linkHoverColor,
+  linkActive,
   mediaMinWidthDesktop
 } from '../common-styles';
 
-const Inner = styled.section`
+const Inner = styled.div`
   position: fixed;
   left: 0;
   right: 0;
@@ -21,8 +24,6 @@ const Inner = styled.section`
   justify-content: center;
   align-items: center;
   height: 70px;
-  /* background-color: ${bgSectionColor};
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25), 0px 4px 10px rgba(0, 0, 0, 0.25); */
   background-color: transparent;
   font-family: ${robotoFont};
 
@@ -32,7 +33,7 @@ const Inner = styled.section`
   }
 `;
 
-const ButtonAdd = styled.button`
+const ButtonAdd = styled(Link)`
   width: 156px;
   height: 45px;
   display: flex;
@@ -50,23 +51,25 @@ const ButtonAdd = styled.button`
   text-transform: uppercase;
   border: 0;
   background-color: ${bgSectionColor};
+  text-decoration: none;
+
+  &:hover {
+    color: ${linkHoverColor};
+  }
+
+  &:active {
+    color: ${linkActive};
+  }
 `;
 
-class AddTransaction extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <Inner>
-        <ButtonAdd>Добавить</ButtonAdd>
-      </Inner>
-    )
-  }
+export default function AddTransactionButton ({buttonText = "Добавить"}) {
+  return (
+    <Inner>
+      <ButtonAdd to="/add-transaction/">{buttonText}</ButtonAdd>
+    </Inner>
+  )
 }
 
-export default AddTransaction
+AddTransactionButton.propTypes = {
+  buttonText: PropTypes.string.isRequired
+}

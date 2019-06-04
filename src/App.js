@@ -6,19 +6,11 @@ import {BrowserRouter as Router, Route,Link} from 'react-router-dom';
 import styled from 'styled-components';
 import './assets/fonts/Eczar/stylesheet.css';
 import './assets/fonts/Roboto/stylesheet.css';
-import logo from './assets/images/icons/logo.svg';
-import logoSmall from './assets/images/icons/purse.svg';
 
 import Home from './pages/Home.js';
 import Transactions from './pages/Transactions.js';
 import TransactionsDetail from './pages/TransactionsDetail.js';
-
-import {
-  maxWidth,
-  gutterDesktop,
-  gutterMobile,
-  mediaMinWidthDesktop
-} from './common-styles';
+import AddTransaction from './pages/AddTransaction';
 
 const AppContainer = styled.div`
   padding-bottom: 75px;
@@ -84,6 +76,10 @@ class App extends Component {
                     idTransaction ={id}  
                     typeTransaction={'costs'}/>
                 } }
+                />
+          <Route path="/add-transaction/"
+                 component={AddTransaction}
+                 exact
                 />
         </Router>
         

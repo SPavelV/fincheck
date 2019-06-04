@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {addTransaction} from '../actions';
-import {Link} from 'react-router-dom';
 import MainHeader from '../components/MainHeader';
 import Alert from '../components/Alert';
 import PreviewCard from '../components/preview-card/PreviewCard';
-import AddTransaction from '../components/AddTransaction';
+import AddTransactionButton from '../components/AddTransactionButton';
 import {getTransactionData} from '../common-functions';
 import styled from 'styled-components';
 
@@ -59,7 +58,7 @@ export class Home extends Component {
               <PreviewCard 
                 sectionTitle="Расходы"
                 dataItems={dataCosts}/>
-              <AddTransaction/>
+              <AddTransactionButton buttonText={"Добавить"}/>
             </InnerCards> 
           </Inner>
         )
