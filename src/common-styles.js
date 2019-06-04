@@ -29,6 +29,7 @@ export const redColorArr = ['#FFDC78 ','#FF6951 ', '#FFD7D0', '#FFAC12', '#EB776
 
 export const linkHoverColor = greenColor;
 export const linkColor = grayColor;
+export const linkActive = greenDarkColor;
 
 //shadow:
 export const sectionShadow = `0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);`

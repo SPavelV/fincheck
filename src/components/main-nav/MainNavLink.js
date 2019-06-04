@@ -11,6 +11,14 @@ import minus from '../../assets/images/icons/minus.svg';
 import params from '../../assets/images/icons/params.svg';
 import plus from '../../assets/images/icons/plus.svg';
 
+import {
+  linkColor,
+  linkHoverColor,
+  linkActive,
+  mediaMinWidthDesktop,
+  grayColor
+} from '../../common-styles';
+
 const LinkNavigation = styled(NavLink)`
   position:relative;
   display: flex;
@@ -19,41 +27,42 @@ const LinkNavigation = styled(NavLink)`
   font-family: 'Roboto';
   font-weight: normal;
   text-decoration: none;
+  color: ${linkColor};
   
   &:hover {
-    color: #007D51;
+    color: ${linkHoverColor};
     
     svg {
-      fill: #007D51;
+      fill: ${linkHoverColor};
     }
   }
 
   &:active {
-    color: #005D57;
+    color: ${linkActive};
 
     svg {
-      fill: #005D57;
+      fill: ${linkActive};
     }
   }
 
-  @media(min-width: 768px) {
+  @media(min-width: ${mediaMinWidthDesktop}) {
     font-size: 14px;
     line-height: 20px;
   }
 
   svg {
       margin-right: 10px;
-      fill: #7B7B7B;
+      fill: ${grayColor};
   }
 
   &.active svg{
-    fill: #007D51;
+    fill: ${linkHoverColor};
   }
 
   & + & {
     margin-left: 0;
 
-    @media(min-width: 768px) {
+    @media(min-width: ${mediaMinWidthDesktop}) {
       margin-left: 20px;
     }
   }
