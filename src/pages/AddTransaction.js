@@ -6,6 +6,7 @@ import SecondHeader from '../components/SecondHeader';
 import {
   PageInner,
   SectionInnerTransparent,
+  grayColor,
   mediaMinWidthDesktop,
   robotoFont,
   bgSectionColor,
@@ -15,6 +16,10 @@ import {
 const Inner = styled.div`
   position: relative;
   display: block;
+`;
+
+const InnerForm = styled(SectionInnerTransparent)`
+
 `;
 
 const InnerSave = styled.section`
@@ -59,6 +64,15 @@ const ButtonSave = styled.button`
   background-color: ${bgSectionColor};
 `;
 
+const Select = styled.select`
+    width: 100%;
+    border: 1px solid ${grayColor};
+`;
+
+const Option = styled.option`
+
+`;
+
 class AddTransaction extends React.Component {
   constructor(props) {
     super(props);
@@ -67,10 +81,23 @@ class AddTransaction extends React.Component {
     }
   }
 
+  getSelect(data){
+    if(!data) return;
+    const optionsElementsArr = data.map(element => <Option value={element.text}>element.text</Option>)
+    return (
+       <Select required>
+         
+       </Select>
+    )
+  }
+
   render() {
     return (
       <Inner>
         <SecondHeader transactionName = {'Добавить'} />
+        <InnerForm>
+          
+        </InnerForm>
         <InnerSave>
           <ButtonSave>Сохранить</ButtonSave>
         </InnerSave>

@@ -408,3 +408,14 @@ export const transactions = [
 export const detailTransaction = []
 
 export const search = []
+
+export const transactionType = [
+  {
+    "name": "Доход",
+    "id": "income"
+  },
+  {
+    "name": "Расxод",
+    "id": "costs"
+  }
+];
