@@ -16,6 +16,9 @@ import {
   CREATE_DATA_TRANSACTION_DETAIL_AFTER_SAERCH,
   CREATE_DATA_SEARCH_DETAIL_TRANSACTION,
   DELETE_DATA_SEARCH_DETAIL_TRANSACTION,
+  ADD_CATEGORY,
+  DELETE_CATEGORY,
+  EDIT_CATEGORY
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -126,3 +129,23 @@ export function deleteDataSearchDetail() {
   }
 }
 
+export function addCategoryTransaction(payload) {
+  return {
+    type: ADD_CATEGORY,
+    payload
+  }
+}
+
+export function deleteCategoryTransaction(payload) {
+  return {
+    type: DELETE_CATEGORY,
+    payload
+  }
+}
+
+export function editCategoryTransaction(payload) {
+  return {
+    type: EDIT_CATEGORY,
+    payload
+  }
+}

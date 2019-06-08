@@ -409,7 +409,7 @@ export const detailTransaction = []
 
 export const search = []
 
-export const transactionType = [
+export const categories = [
   {
     "name": "Доход",
     "id": "income"
@@ -418,4 +418,23 @@ export const transactionType = [
     "name": "Расxод",
     "id": "costs"
   }
-];
+]
+
+export const incomeTypes = [
+  {
+    "name": "Зарплата",
+    "id": "salary"
+  },
+  {
+    "name": "Фриланс",
+    "id": "freelance"
+  },
+  {
+    "name": "Подарок",
+    "id": "gift"
+  },
+  {
+    "name": "Прочее",
+    "id": "other"
+  }
+]

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 import SecondHeader from '../components/SecondHeader';
 
@@ -81,22 +82,29 @@ class AddTransaction extends React.Component {
     }
   }
 
+  static propTypes ={
+    dataCategories: PropTypes.array.isRequired
+  }
+
   getSelect(data){
     if(!data) return;
-    const optionsElementsArr = data.map(element => <Option value={element.text}>element.text</Option>)
+    const optionsElementsArr = data.map(element => <Option value={element.name}>{element.name}</Option>)
     return (
        <Select required>
-         
+         {optionsElementsArr}
        </Select>
     )
   }
 
   render() {
+    const {dataCategories} = this.props;
+    const selectTypeTransaction = this.getSelect(dataCategories);
+
     return (
       <Inner>
         <SecondHeader transactionName = {'Добавить'} />
-        <InnerForm>
-          
+        <InnerForm action="">
+          {selectTypeTransaction}
         </InnerForm>
         <InnerSave>
           <ButtonSave>Сохранить</ButtonSave>
@@ -107,4 +115,8 @@ class AddTransaction extends React.Component {
   }
 }
 
-export default AddTransaction
+const mapStateToProps = state => ({
+  dataCategories: state.categories
+})
+
+export default connect(mapStateToProps)(AddTransaction);

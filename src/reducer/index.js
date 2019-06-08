@@ -6,6 +6,7 @@ import detailTransaction from './detailTransaction';
 import selectTransactionItem from './selectTransactionItem';
 import search from './search';
 import transactionsCategory from './createTransactionsCategory';
+import categories from './categories';
 
 export default combineReducers({
   mainMenu,
@@ -14,5 +15,6 @@ export default combineReducers({
   detailTransaction,
   selectTransactionItem,
   search,
-  transactionsCategory
+  transactionsCategory,
+  categories
 })
