@@ -78,33 +78,50 @@ class AddTransaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      categorySelectValue: 'income'
     }
   }
 
   static propTypes ={
-    dataCategories: PropTypes.array.isRequired
+    dataCategories: PropTypes.array.isRequired,
+    dataTransactionsType: PropTypes.array.isRequired
   }
 
-  getSelect(data){
+  changeSelectCategory(evt,self) {
+    self.setState( {categorySelectValue: evt.target.value} );
+  }
+
+  getSelect(data,callback=()=>({})){
     if(!data) return;
-    const optionsElementsArr = data.map(element => <Option value={element.name}>{element.name}</Option>)
+    const self = this;
+    const optionsElementsArr = data.map(element => <Option key={element.id} value={element.id}>{element.name}</Option>)
     return (
-       <Select required>
+       <Select 
+        required 
+        onChange={(evt)=>callback(evt,self)}
+        >
          {optionsElementsArr}
        </Select>
     )
   }
 
+  getSelectTypes(data) {
+    if(!data) return;
+    return this.getSelect(data.filter(element => element.category === this.state.categorySelectValue));
+    
+  }
+
   render() {
-    const {dataCategories} = this.props;
-    const selectTypeTransaction = this.getSelect(dataCategories);
+    const {dataCategories,dataTransactionsType} = this.props;
+    const selectCategories = this.getSelect(dataCategories,this.changeSelectCategory);
+    const selectTypes = this.getSelectTypes(dataTransactionsType);
 
     return (
       <Inner>
         <SecondHeader transactionName = {'Добавить'} />
         <InnerForm action="">
-          {selectTypeTransaction}
+          {selectCategories}
+          {selectTypes}
         </InnerForm>
         <InnerSave>
           <ButtonSave>Сохранить</ButtonSave>
@@ -116,7 +133,8 @@ class AddTransaction extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  dataCategories: state.categories
+  dataCategories: state.categories,
+  dataTransactionsType: state.typeTransactions
 })
 
 export default connect(mapStateToProps)(AddTransaction);

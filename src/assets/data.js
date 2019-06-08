@@ -420,21 +420,50 @@ export const categories = [
   }
 ]
 
-export const incomeTypes = [
+export const transactionsType = [
   {
+    "category": "income", 
     "name": "Зарплата",
     "id": "salary"
   },
   {
+    "category": "income",
     "name": "Фриланс",
     "id": "freelance"
   },
   {
+    "category": "income",
     "name": "Подарок",
     "id": "gift"
   },
   {
+    "category": "income",
     "name": "Прочее",
     "id": "other"
+  },
+  {
+    "category": "costs",
+    "name": "Кредит",
+    "id": "credit"
+  },
+  {
+    "category": "costs",
+    "name": "Ипотека",
+    "id": "mortgage"
+  },
+  {
+    "category": "costs",
+    "name": "Продукты",
+    "id": "products"
+  },
+  {
+    "category": "costs",
+    "name": "Транспорт",
+    "id": "transport"
+  },
+  {
+    "category": "costs",
+    "name": "Хозтовары",
+    "id": "household_goods"
   }
-]
+];

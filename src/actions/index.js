@@ -18,7 +18,10 @@ import {
   DELETE_DATA_SEARCH_DETAIL_TRANSACTION,
   ADD_CATEGORY,
   DELETE_CATEGORY,
-  EDIT_CATEGORY
+  EDIT_CATEGORY,
+  ADD_TYPE_TRANSACTION,
+  DELETE_TYPE_TRANSACTION,
+  EDIT_TYPE_TRANSACTION
 } from '../constants';
 
 export function toggleActiveMainNavLink(id) {
@@ -146,6 +149,27 @@ export function deleteCategoryTransaction(payload) {
 export function editCategoryTransaction(payload) {
   return {
     type: EDIT_CATEGORY,
+    payload
+  }
+}
+
+export function addTypeTransaction(payload) {
+  return {
+    type: ADD_TYPE_TRANSACTION,
+    payload
+  }
+}
+
+export function deleteTypeTransaction(payload) {
+  return {
+    type: DELETE_TYPE_TRANSACTION,
+    payload
+  }
+}
+
+export function editTypeTransaction(payload) {
+  return {
+    type: EDIT_TYPE_TRANSACTION,
     payload
   }
 }
